@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MP School Education Schemes – Public Dashboard</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome (Icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Highcharts -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+  <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+  <!-- MP GeoJSON -->
+  <script src="https://code.highcharts.com/mapdata/countries/in/in-mp-all.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .card {
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .progress {
+      height: 25px;
+    }
+    .nav-tabs .nav-link.active {
+      font-weight: bold;
+      border-bottom: 3px solid #0d6efd;
+    }
+    #mpMap {
+      min-height: 500px;
+    }
+    .kpi-card {
+      border-left: 4px solid #0d6efd;
+    }
+    .kpi-card .card-title {
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="bg-primary text-white py-3">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Emblem_of_Madhya_Pradesh.svg" height="50" alt="MP Govt Logo">
+          <h1 class="h4 ms-3 mb-0">MP School Education Schemes – Public Dashboard</h1>
+        </div>
+        <div>
+          <button id="langToggle" class="btn btn-sm btn-light">हिंदी / English</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Menu -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#schemes" id="schemesDropdown">Schemes</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#uniforms">Free Uniforms</a></li>
+              <li><a class="dropdown-item" href="#textbooks">Free Textbooks</a></li>
+              <li><a class="dropdown-item" href="#middaymeal">Mid-Day Meal</a></li>
+              <li><a class="dropdown-item" href="#bicycles">Free Bicycles</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#districts">District-wise Data</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reports">Reports</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faqs">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Dashboard Content -->
+  <main class="container my-4">
+    <!-- KPI Cards -->
+    <section id="kpis" class="row g-4 mb-4">
+      <div class="col-md-3 col-6">
+        <div class="card shadow-sm h-100 kpi-card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Students Benefitted</h5>
+            <h2 class="text-primary" id="totalStudents">5,200,000</h2>
+            <small class="text-success"><i class="fas fa-arrow-up"></i> 12% vs 2024</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="card shadow-sm h-100 kpi-card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Budget Utilized</h5>
+            <h2 class="text-primary" id="totalBudget">₹1,200 Cr</h2>
+            <small class="text-success"><i class="fas fa-arrow-up"></i> 8% vs 2024</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="card shadow-sm h-100 kpi-card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Schools Covered</h5>
+            <h2 class="text-primary" id="schoolsCovered">75,000</h2>
+            <small class="text-warning"><i class="fas fa-arrow-up"></i> 3% vs 2024</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="card shadow-sm h-100 kpi-card">
+          <div class="card-body text-center">
+            <h5 class="card-title">Districts 100% Covered</h5>
+            <h2 class="text-primary" id="fullCoverage">12</h2>
+            <small class="text-danger"><i class="fas fa-arrow-down"></i> 2 vs 2024</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Map -->
+    <section class="card mb-4">
+      <div class="card-header bg-light">
+        <h3 class="h5 mb-0">District-wise Scheme Coverage</h3>
+      </div>
+      <div class="card-body">
+        <div id="mpMap" style="height: 500px;"></div>
+      </div>
+    </section>
+
+    <!-- Scheme Tabs -->
+    <section class="mb-4">
+      <ul class="nav nav-tabs" id="schemeTabs">
+        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#uniforms">Free Uniforms</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#textbooks">Free Textbooks</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#middaymeal">Mid-Day Meal</a></li>
+        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#bicycles">Free Bicycles</a></li>
+      </ul>
+      <div class="tab-content p-3 border border-top-0">
+        <div class="tab-pane fade show active" id="uniforms">
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Free Uniform Distribution</h4>
+              <div class="progress mb-3">
+                <div class="progress-bar bg-success" style="width: 98%">98%</div>
+              </div>
+              <p><strong>Beneficiaries:</strong> 14.7L / 15L</p>
+              <p><strong>Budget Utilized:</strong> ₹45 Cr / ₹50 Cr</p>
+              <p><strong>Last Updated:</strong> 24 June 2025</p>
+            </div>
+            <div class="col-md-6">
+              <canvas id="uniformChart" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="textbooks">
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Free Textbook Scheme</h4>
+              <div class="progress mb-3">
+                <div class="progress-bar bg-success" style="width: 95%">95%</div>
+              </div>
+              <p><strong>Books Distributed:</strong> 19L / 20L</p>
+              <p><strong>Budget Utilized:</strong> ₹38 Cr / ₹40 Cr</p>
+              <p><strong>Last Updated:</strong> 22 June 2025</p>
+            </div>
+            <div class="col-md-6">
+              <canvas id="textbookChart" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="middaymeal">
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Mid-Day Meal Program</h4>
+              <div class="progress mb-3">
+                <div class="progress-bar bg-warning" style="width: 87%">87%</div>
+              </div>
+              <p><strong>Schools Covered:</strong> 65,000 / 75,000</p>
+              <p><strong>Budget Utilized:</strong> ₹120 Cr / ₹150 Cr</p>
+              <p><strong>Last Updated:</strong> 20 June 2025</p>
+            </div>
+            <div class="col-md-6">
+              <canvas id="mealChart" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="bicycles">
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Free Bicycle Scheme</h4>
+              <div class="progress mb-3">
+                <div class="progress-bar bg-danger" style="width: 65%">65%</div>
+              </div>
+              <p><strong>Bicycles Distributed:</strong> 65,000 / 100,000</p>
+              <p><strong>Budget Utilized:</strong> ₹32.5 Cr / ₹50 Cr</p>
+              <p><strong>Last Updated:</strong> 18 June 2025</p>
+            </div>
+            <div class="col-md-6">
+              <canvas id="bicycleChart" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- District Comparison Table -->
+    <section class="card mb-4">
+      <div class="card-header bg-light">
+        <h3 class="h5 mb-0">District Performance</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped" id="districtTable">
+            <thead>
+              <tr>
+                <th>District</th>
+                <th>Scheme</th>
+                <th>Target</th>
+                <th>Achieved</th>
+                <th>Coverage %</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bhopal</td>
+                <td>Free Uniforms</td>
+                <td>120,000</td>
+                <td>118,000</td>
+                <td>98%</td>
+                <td><span class="badge bg-success">On Track</span></td>
+              </tr>
+              <tr>
+                <td>Indore</td>
+                <td>Free Textbooks</td>
+                <td>150,000</td>
+                <td>140,000</td>
+                <td>93%</td>
+                <td><span class="badge bg-success">On Track</span></td>
+              </tr>
+              <tr>
+                <td>Jabalpur</td>
+                <td>Mid-Day Meal</td>
+                <td>80,000</td>
+                <td>65,000</td>
+                <td>81%</td>
+                <td><span class="badge bg-warning">In Progress</span></td>
+              </tr>
+              <tr>
+                <td>Gwalior</td>
+                <td>Free Bicycles</td>
+                <td>50,000</td>
+                <td>30,000</td>
+                <td>60%</td>
+                <td><span class="badge bg-danger">Delayed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class="row g-4 mb-4">
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Year-wise Beneficiaries</h5>
+            <canvas id="lineChart" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Demographic Distribution</h5>
+            <canvas id="pieChart" height="300"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="card mb-4">
+      <div class="card-header bg-light">
+        <h3 class="h5 mb-0">Success Stories</h3>
+      </div>
+      <div class="card-body">
+        <div id="successCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="https://via.placeholder.com/300x200?text=Student+With+Uniform" class="d-block w-100" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <h5>Free Uniforms Changed My Life</h5>
+                  <p>"The free uniforms helped me attend school with dignity. I no longer feel different from my classmates." - Priya, Class 8, Bhopal</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="https://via.placeholder.com/300x200?text=Girl+With+Bicycle" class="d-block w-100" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <h5>Bicycle Reduced My Travel Time</h5>
+                  <p>"My 5km walk to school is now a 20-minute ride. I have more time to study." - Rani, Class 9, Guna</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#successCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#successCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Downloadable Reports -->
+    <section class="card mb-4">
+      <div class="card-header bg-light">
+        <h3 class="h5 mb-0">Download Reports</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3 col-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                <h6>Annual Report 2024-25</h6>
+                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-file-excel fa-3x text-success mb-3"></i>
+                <h6>Scheme-wise Data</h6>
+                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-file-alt fa-3x text-primary mb-3"></i>
+                <h6>RTI Disclosures</h6>
+                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6 mb-3">
+            <div class="card h-100">
+              <div class="card-body text-center">
+                <i class="fas fa-book fa-3x text-warning mb-3"></i>
+                <h6>Scheme Guidelines</h6>
+                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer with Feedback -->
+  <footer class="bg-dark text-white py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Submit Feedback</h5>
+          <form id="feedbackForm">
+            <div class="mb-3">
+              <select class="form-select mb-2" id="schemeSelect">
+                <option selected>Select Scheme</option>
+                <option>Free Uniforms</option>
+                <option>Free Textbooks</option>
+                <option>Mid-Day Meal</option>
+                <option>Free Bicycles</option>
+              </select>
+              <textarea class="form-control mb-2" placeholder="Your query..." rows="3"></textarea>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h5>Contact DPI</h5>
+          <p><i class="fas fa-phone"></i> Helpline: 1800-123-4567</p>
+          <p><i class="fas fa-envelope"></i> Email: education@mp.gov.in</p>
+          <p><i class="fas fa-map-marker-alt"></i> Address: Directorate of Public Instruction, Bhopal, MP</p>
+          <div class="mt-3">
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-3 pt-3 border-top">
+        <p class="mb-0">© 2025 Directorate of Public Instruction, Madhya Pradesh. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Initialize all charts when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // MP District Map
+      Highcharts.mapChart('mpMap', {
+        chart: {
+          map: 'countries/in/in-mp-all'
+        },
+        title: {
+          text: 'Scheme Coverage by District'
+        },
+        colorAxis: {
+          min: 0,
+          max: 100,
+          stops: [
+            [0, '#FF0000'],    // Red for 0-70%
+            [0.7, '#FFA500'],  // Orange for 70-90%
+            [1, '#008000']     // Green for 90-100%
+          ]
+        },
+        series: [{
+          data: [
+            { 'hc-key': 'in-mp-bp', value: 98, name: 'Bhopal' },
+            { 'hc-key': 'in-mp-in', value: 85, name: 'Indore' },
+            { 'hc-key': 'in-mp-ju', value: 72, name: 'Jabalpur' },
+            { 'hc-key': 'in-mp-gu', value: 60, name: 'Gwalior' },
+            { 'hc-key': 'in-mp-re', value: 95, name: 'Rewa' },
+            { 'hc-key': 'in-mp-ua', value: 88, name: 'Ujjain' }
+          ],
+          name: 'Coverage %',
+          states: {
+            hover: {
+              color: '#BADA55'
+            }
+          },
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+          },
+          tooltip: {
+            pointFormat: '{point.name}: {point.value}% coverage'
+          }
+        }]
+      });
+
+      // Chart.js Charts
+      // Uniform Distribution Chart
+      new Chart(
+        document.getElementById('uniformChart'),
+        {
+          type: 'bar',
+          data: {
+            labels: ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior', 'Ujjain'],
+            datasets: [{
+              label: 'Uniforms Distributed',
+              data: [98000, 85000, 72000, 60000, 88000],
+              backgroundColor: [
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(153, 102, 255, 0.6)'
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        }
+      );
+
+      // Textbook Distribution Chart
+      new Chart(
+        document.getElementById('textbookChart'),
+        {
+          type: 'doughnut',
+          data: {
+            labels: ['Distributed', 'Pending'],
+            datasets: [{
+              data: [95, 5],
+              backgroundColor: [
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 99, 132, 0.6)'
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'bottom'
+              }
+            }
+          }
+        }
+      );
+
+      // Mid-Day Meal Chart
+      new Chart(
+        document.getElementById('mealChart'),
+        {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            datasets: [{
+              label: 'Schools Covered',
+              data: [55000, 58000, 60000, 63000, 65000],
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        }
+      );
+
+      // Bicycle Distribution Chart
+      new Chart(
+        document.getElementById('bicycleChart'),
+        {
+          type: 'bar',
+          data: {
+            labels: ['Target', 'Achieved'],
+            datasets: [{
+              label: 'Bicycles',
+              data: [100000, 65000],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)'
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        }
+      );
+
+      // Line Chart (Year-wise beneficiaries)
+      new Chart(
+        document.getElementById('lineChart'),
+        {
+          type: 'line',
+          data: {
+            labels: ['2021', '2022', '2023', '2024', '2025'],
+            datasets: [
+              {
+                label: 'Free Uniforms',
+                data: [3200000, 3800000, 4200000, 4700000, 5200000],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true
+              },
+              {
+                label: 'Free Textbooks',
+                data: [3000000, 3500000, 4000000, 4500000, 4900000],
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: true
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'bottom'
+              }
+            }
+          }
+        }
+      );
+
+      // Pie Chart (Demographic Distribution)
+      new Chart(
+        document.getElementById('pieChart'),
+        {
+          type: 'pie',
+          data: {
+            labels: ['SC', 'ST', 'OBC', 'General'],
+            datasets: [{
+              data: [25, 20, 35, 20],
+              backgroundColor: [
+                '#FF6384',
+                '#36A2EB',
+                '#FFCE56',
+                '#4BC0C0'
+              ]
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'bottom'
+              }
+            }
+          }
+        }
+      );
+
+      // Language Toggle
+      $('#langToggle').click(function() {
+        // In a real app, this would switch all text to Hindi
+        alert('Language switching functionality would be implemented here');
+      });
+
+      // Feedback Form Submission
+      $('#feedbackForm').submit(function(e) {
+        e.preventDefault();
+        alert('Thank you for your feedback! We will contact you soon.');
+        this.reset();
+      });
+    });
+  </script>
+</body>
+</html>
