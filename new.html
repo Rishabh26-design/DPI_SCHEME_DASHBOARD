@@ -1,0 +1,2419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schemes – Public Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Hindi Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #2c7be5;
+            --primary-green: #00d97e;
+            --primary-teal: #00cfd5;
+            --primary-yellow: #dfac2e;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: sans-serif, 'Poppins', Verdana, Tahoma;
+            /* background-color: #f5f7fa; */
+            background-image: url(assets/download.jpg);
+
+        }
+
+        /* Language Toggle Styles */
+        .hindi-text {
+            font-family: sans-serif, 'Poppins';
+        }
+
+        [lang="hi"] {
+            display: none;
+        }
+
+        body.hindi-active [lang="en"] {
+            display: none;
+        }
+
+        body.hindi-active [lang="hi"] {
+            display: inline;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue), #1a5cb0);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .kpi-card {
+            position: relative;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            height: 100%;
+            border: 1px solid #e3ebf6;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .kpi-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), rgba(0, 0, 0, 0));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .kpi-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            background: rgba(0, 0, 0, 0.03);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover .icon {
+            background: rgba(0, 0, 0, 0.05);
+            transform: rotate(-5deg);
+        }
+
+        .kpi-card .h5 {
+            font-weight: 500;
+            color: #6e84a3;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .kpi-card .h2 {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            color: #12263f;
+        }
+
+        .kpi-card .card-footer {
+            background: transparent;
+            border-top: 1px solid #edf2f9;
+            padding-top: 12px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kpi-card small {
+            color: #95aac9;
+            font-size: 0.75rem;
+        }
+
+        .kpi-card .badge {
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+
+        .kpi-1 {
+            --accent-color: var(--primary-blue);
+        }
+
+        .kpi-2 {
+            --accent-color: var(--primary-green);
+        }
+
+        .kpi-3 {
+            --accent-color: var(--primary-teal);
+        }
+
+        .kpi-4 {
+            --accent-color: var(--primary-yellow);
+        }
+
+        @media (max-width: 768px) {
+            .kpi-card {
+                padding: 20px;
+            }
+
+            .kpi-card .h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .map-container,
+        .tab-container,
+        .dis-container,
+        .success-container,
+        .download-container {
+            height: auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-green);
+            border-radius: 5px;
+        }
+
+        .progress {
+            height: 25px;
+            border-radius: 5px;
+        }
+
+        .progress-bar {
+            background-color: var(--primary-green);
+        }
+
+        .testimonial-card {
+            border-left: 4px solid var(--primary-green);
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .on-track {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .in-progress {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .delayed {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        footer {
+            background-image: url(assets/Footer.jpg);
+            background-size: cover !important;
+            background-repeat: no-repeat;
+            color: white;
+            background-position: center;
+            overflow: hidden;
+
+        }
+        
+
+        .tab-content {
+            background: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: none;
+        }
+
+        .nav-tabs {
+            border-bottom: none;
+        }
+
+        .nav-tabs .nav-link {
+            border: none;
+            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .nav-tabs .nav-link.active {
+            background: rgb(159, 204, 255);
+            color: black;
+            font-weight: 600;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            height: 100%;
+            margin: 0 10px;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-inner {
+            padding: 20px 0;
+        }
+
+        .carousel-item.active {
+            min-height: auto !important;
+        }
+
+        .carousel-item {
+            min-height: auto !important;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item .col-md-6 {
+                width: 100% !important;
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+            }
+
+            .carousel-item.active {
+                display: flex !important;
+            }
+
+            .testimonial-card {
+                margin: 0 5px;
+            }
+        }
+
+        .card1:hover {
+            background-color: rgb(241, 198, 203);
+        }
+
+        .card2:hover {
+            background-color: rgb(191 235 215);
+        }
+
+        .card3:hover {
+            background-color: rgb(184 213 255);
+        }
+
+        .card4:hover {
+            background-color: rgb(241, 230, 195);
+        }
+
+        .bg {
+            background-image: url(assets/bg.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        @media (max-width: 768px) {
+            .spa {
+                gap: 0.5rem !important;
+            }
+
+        }
+
+        .form-label-floating {
+            position: absolute;
+            top: 0.5rem;
+            left: 1.25rem;
+            background: #f8fafc;
+            padding: 0 0.375rem;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #374151;
+            pointer-events: none;
+            transition: 0.2s ease all;
+            border-radius: 0.375rem;
+            border: 1.5px solid #3b82f6;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        select.form-select {
+            border-radius: 0.5rem;
+            padding-left: 1.25rem;
+            padding-top: 0.8rem;
+            padding-bottom: 0.5rem;
+            font-size: 1rem;
+            border: 2px solid #3b82f6;
+            color: #374151;
+            background-color: white;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .select-wrapper i.fa-chevron-down {
+            position: absolute;
+            right: 0.73rem;
+            top: 46%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #3b82f6;
+            font-size: 1.25rem;
+        }
+
+        select.form-select:focus+.form-label-floating,
+        select.form-select:not(:placeholder-shown)+.form-label-floating {
+            top: -0.6rem;
+            left: 1rem;
+            font-size: 0.75rem;
+            color: #2563eb;
+            font-weight: 700;
+            border-color: #2563eb;
+            background: white;
+            padding: 0 0.25rem;
+        }
+
+        /* Specific styles for the schemes table */
+        #schemes-table-container .card-table {
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+            border: none;
+        }
+
+        #schemes-table-container .card-header {
+            background-color: #2563eb;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border-radius: 0.75rem 0.75rem 0 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+        }
+
+        #schemes-table-container .card-header i {
+            font-size: 1.5rem;
+        }
+
+        #schemes-table-container table {
+            border-collapse: separate !important;
+            border-spacing: 0 0.5rem !important;
+            width: 100%;
+        }
+
+        #schemes-table-container thead th {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 0.3rem 1.5rem;
+            text-align: left;
+            border-bottom: 2px solid #e0e7ff;
+        }
+
+        #schemes-table-container tbody {
+            display: block;
+            max-height: 18rem;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #2563eb #f1f5f9;
+            scrollbar-gutter: stable;
+        }
+
+        #schemes-table-container tbody::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        #schemes-table-container tbody::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+            margin: 4px;
+        }
+
+        #schemes-table-container tbody::-webkit-scrollbar-thumb {
+            background-color: #2563eb;
+            border-radius: 10px;
+            border: 2px solid #f1f5f9;
+        }
+
+        #schemes-table-container tbody::-webkit-scrollbar-thumb:hover {
+            background-color: #1d4ed8;
+        }
+
+        #schemes-table-container #schemes-table {
+            width: 100%;
+            display: table;
+        }
+
+        #schemes-table-container thead,
+        #schemes-table-container tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+        #schemes-table-container tbody td {
+            padding: 0rem 1.5rem;
+            vertical-align: middle;
+            font-size: 1rem;
+            color: #374151;
+        }
+
+        #schemes-table-container tbody td.scheme-cell {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        #schemes-table-container tbody td.scheme-cell i {
+            color: #2563eb;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        #schemes-table-container tbody td.beneficiaries-cell {
+            font-weight: 700;
+            text-align: right;
+            color: #1e40af;
+            white-space: nowrap;
+        }
+
+        #schemes-table-container .no-data {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 576px) {
+            #schemes-table-container .card-header {
+                font-size: 1rem;
+                padding: 0.75rem 1rem;
+            }
+
+            #schemes-table-container thead th,
+            #schemes-table-container tbody td {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            #schemes-table-container tbody td.scheme-cell i {
+                font-size: 1rem;
+            }
+
+            #schemes-table-container tbody td.beneficiaries-cell {
+                font-size: 1rem;
+            }
+        }
+
+        /* Status indicator styles */
+        #schemes-table-container .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        #schemes-table-container .status-success {
+            background-color: #10b981;
+        }
+
+        #schemes-table-container .status-warning {
+            background-color: #f59e0b;
+        }
+
+        #schemes-table-container .status-danger {
+            background-color: #ef4444;
+        }
+
+        #schemes-table-container .scheme-name-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* District-wise performance table styles */
+        #districtTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #districtTable thead th {
+            background-color: #f8f9fa;
+            color: #495057;
+            font-weight: 600;
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        #districtTable tbody tr {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        #districtTable tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        #districtTable tbody tr:hover {
+            background-color: #e9ecef;
+        }
+
+        #districtTable tbody td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+
+        .svgshadow {
+            filter: drop-shadow(2px 4px 3px #22222251);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class=" bg-warning text-dark p-1">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+
+                    <span lang="en">
+                        School Education Department Madhya Pradesh</span>
+                    <span lang="hi">स्कूल शिक्षा विभाग मध्यप्रदेश</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <header class="bg text-dark py-3">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <img src="assets/MpLOgo.png" height="70" alt="MP Govt Logo" class="me-3">
+                    <div>
+                        <h1 class="h4 mb-0 fw-bold">
+                            <span lang="en">MP School Education Schemes</span>
+                            <span lang="hi">एमपी स्कूल शिक्षा योजनाएं</span>
+                        </h1>
+                        <small class="text-dark">
+                            <span lang="en">Public Dashboard</span>
+                            <span lang="hi">सार्वजनिक डैशबोर्ड</span>
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <button id="langToggle" class="btn btn-outline-primary">हिंदी</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="sticky-top navbar-expand-lg navbar-dark p-2" style="background-image: url(assets/headerbg.jpg);">
+        <div class="container ">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav fw-semibold spa gap-5">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">
+                            <i class="fas fa-home me-1"></i>
+                            <span lang="en">Home</span>
+                            <span lang="hi">होम</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="schemesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-project-diagram me-1"></i>
+                            <span lang="en">Schemes</span>
+                            <span lang="hi">योजनाएं</span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="schemesDropdown">
+                            <li>
+                                <a class="dropdown-item" href="#uniforms">
+                                    <span lang="en">Free Uniforms</span>
+                                    <span lang="hi">मुफ्त वर्दी</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#textbooks">
+                                    <span lang="en">Free Textbooks</span>
+                                    <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#middaymeal">
+                                    <span lang="en">Mid-Day Meal</span>
+                                    <span lang="hi">मध्याह्न भोजन</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#bicycles">
+                                    <span lang="en">Free Bicycles</span>
+                                    <span lang="hi">मुफ्त साइकिल</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#districts">
+                            <i class="fas fa-map-marked-alt me-1"></i>
+                            <span lang="en">District-wise Data</span>
+                            <span lang="hi">जिलेवार डेटा</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reports">
+                            <i class="fas fa-file-alt me-1"></i>
+                            <span lang="en">Reports</span>
+                            <span lang="hi">रिपोर्ट्स</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faqs">
+                            <i class="fas fa-question-circle me-1"></i>
+                            <span lang="en">FAQs</span>
+                            <span lang="hi">सामान्य प्रश्न</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h2 class="h4">
+                    <i class="fas fa-tachometer-alt text-primary me-2"></i>
+                    <span lang="en">Scheme Performance Overview</span>
+                    <span lang="hi">योजना प्रदर्शन अवलोकन</span>
+                </h2>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="text-muted small">
+                    <span lang="en">Last Updated:</span>
+                    <span lang="hi">अंतिम अद्यतन:</span>
+                    <span class="fw-bold" id="lastUpdated">24 June 2025, 10:30 AM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlight KPIs -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3 col-6">
+                <div class="kpi-card kpi-1">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <div class="h5 fw-bold">
+                        <span lang="en">Total Students Benefitted</span>
+                        <span lang="hi">लाभान्वित छात्र</span>
+                    </div>
+                    <div class="h2 fw-bold">1500000</div>
+                    <div class="card-footer">
+                        <small>
+                            <span lang="en">+12.5% from last year</span>
+                            <span lang="hi">पिछले वर्ष से +12.5%</span>
+                        </small>
+                        <span class="badge"><i class="fas fa-arrow-up me-1"></i>12.5%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="kpi-card kpi-2">
+                    <div class="icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div class="h5 fw-bold">
+                        <span lang="en">Total Budget Allocated</span>
+                        <span lang="hi">कुल बजट आवंटित</span>
+                    </div>
+                    <div class="h2 fw-bold">₹500 Cr</div>
+                    <div class="card-footer">
+                        <small>
+                            <span lang="en">₹480 Cr utilized</span>
+                            <span lang="hi">₹480 करोड़ उपयोग किया गया</span>
+                        </small>
+                        <span class="badge"><i class="fas fa-check-circle me-1"></i>96%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="kpi-card kpi-3">
+                    <div class="icon"><i class="fas fa-book"></i></div>
+                    <div class="h5 fw-bold">
+                        <span lang="en">Total Materials Distributed</span>
+                        <span lang="hi">वितरित सामग्री</span>
+                    </div>
+                    <div class="h2 fw-bold">2000000</div>
+                    <div class="card-footer">
+                        <small>
+                            <span lang="en">98% target achieved</span>
+                            <span lang="hi">98% लक्ष्य प्राप्त</span>
+                        </small>
+                        <span class="badge"><i class="fas fa-arrow-up me-1"></i>5.2%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="kpi-card kpi-4">
+                    <div class="icon"><i class="fas fa-school"></i></div>
+                    <div class="h5 fw-bold">
+                        <span lang="en">Total Schools Covered</span>
+                        <span lang="hi">कुल स्कूल कवर</span>
+                    </div>
+                    <div class="h2 fw-bold">10000</div>
+                    <div class="card-footer">
+                        <small>
+                            <span lang="en">52 districts covered</span>
+                            <span lang="hi">52 जिले कवर</span>
+                        </small>
+                        <span class="badge"><i class="fas fa-star me-1"></i>31 Golden</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Map -->
+        <div class="map-container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2 class="h4 mb-0">
+                            <i class="fas fa-map-marked-alt text-primary me-2"></i>
+                            <span lang="en">Scheme Coverage Across Districts</span>
+                            <span lang="hi">जिलों में योजना कवरेज</span>
+                        </h2>
+                    </div>
+                    <div class="text-left py-4 w-100">
+                        
+
+                        
+
+                        <div class="mt-4" style="margin-left: 10rem;">
+                            <span class="badge bg-success me-2"><i class="fas fa-circle"></i>
+                                <span lang="en">On Track (38)</span>
+                                <span lang="hi">ट्रैक पर (38)</span>
+                            </span>
+                            <span class="badge bg-warning text-dark me-2"><i class="fas fa-circle"></i>
+                                <span lang="en">In Progress (10)</span>
+                                <span lang="hi">प्रगति पर (10)</span>
+                            </span>
+                            <span class="badge bg-danger me-2"><i class="fas fa-circle"></i>
+                                <span lang="en">Delayed (4)</span>
+                                <span lang="hi">विलंबित (4)</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="container py-5" style="max-width: 600px;">
+                        <div class="mb-4 select-wrapper">
+                            <select id="district" class="form-select" aria-label="Select District" placeholder=" ">
+                                <option value="all" selected>All Districts</option>
+                            </select>
+                            <label for="district" class="form-label-floating ">District Name</label>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+
+                        <div id="schemes-table-container" class="card-table">
+                            <div class="card-header">
+                                <i class="fas fa-project-diagram me-1"></i>
+                                Schemes Covered
+                            </div>
+                            <div class="p-0 shadow rounded">
+                                <table aria-label="Schemes Covered Table" id="schemes-table" class="mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Schemes</th>
+                                            <th scope="col" class="text-end">Beneficiaries</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="schemes-body">
+                                        <tr>
+                                            <td colspan="2" class="no-data">Loading data...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scheme-wise Progress Tabs -->
+        <section class="tab-container" data-aos="fade-up">
+            <div class="card border-0">
+                <h2 class="h4 mb-4">
+                    <i class="fas fa-project-diagram text-primary me-2"></i>
+                    <span lang="en">Scheme-wise Progress</span>
+                    <span lang="hi">योजनानुसार प्रगति</span>
+                </h2>
+                <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+                    <ul class="nav nav-tabs card-header-tabs" id="schemeTabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#uniforms">
+                                <i class="fas fa-tshirt me-2"></i>
+                                <span lang="en">Free Uniforms</span>
+                                <span lang="hi">मुफ्त वर्दी</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#textbooks">
+                                <i class="fas fa-book me-2"></i>
+                                <span lang="en">Free Textbooks</span>
+                                <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#middaymeal">
+                                <i class="fas fa-utensils me-2"></i>
+                                <span lang="en">Mid-Day Meal</span>
+                                <span lang="hi">मध्याह्न भोजन</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#bicycles">
+                                <i class="fas fa-bicycle me-2"></i>
+                                <span lang="en">Free Bicycles</span>
+                                <span lang="hi">मुफ्त साइकिल</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body p-0">
+                    <div class="tab-content p-4">
+                        <div class="tab-pane fade show active" id="uniforms">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">
+                                        <span lang="en">Free Uniform Distribution</span>
+                                        <span lang="hi">मुफ्त वर्दी वितरण</span>
+                                    </h4>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span lang="en">Implementation Progress</span>
+                                            <span lang="hi">कार्यान्वयन प्रगति</span>
+                                            <strong>98%</strong>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-success" style="width: 98%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">
+                                                    <span lang="en">Beneficiaries</span>
+                                                    <span lang="hi">लाभार्थी</span>
+                                                </small>
+                                                <strong>14.7L / 15L</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">
+                                                    <span lang="en">Budget Utilized</span>
+                                                    <span lang="hi">उपयोग किया गया बजट</span>
+                                                </small>
+                                                <strong>₹45 Cr / ₹50 Cr</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">
+                                                    <span lang="en">Districts Covered</span>
+                                                    <span lang="hi">कवर किए गए जिले</span>
+                                                </small>
+                                                <strong>48 / 52</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">
+                                                    <span lang="en">Last Updated</span>
+                                                    <span lang="hi">अंतिम अद्यतन</span>
+                                                </small>
+                                                <strong>24 June 2025</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <canvas id="uniformChart" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="textbooks">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">Free Textbook Distribution</h4>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Implementation Progress</span>
+                                            <strong>95%</strong>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-success" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">Books Distributed</small>
+                                                <strong>28.5L / 30L</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">Budget Utilized</small>
+                                                <strong>₹38 Cr / ₹40 Cr</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">Last Updated</small>
+                                                <strong>24 June 2025</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <canvas id="textbookChart" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="middaymeal">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">Mid-Day Meal Program</h4>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Implementation Progress</span>
+                                            <strong>87%</strong>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-warning" style="width: 87%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">Schools Covered</small>
+                                                <strong> 65,000 / 75,000</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">Budget Utilized</small>
+                                                <strong>₹120 Cr / ₹150 Cr</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">Last Updated</small>
+                                                <strong>20 June 2025</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <canvas id="mealChart" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="bicycles">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">Free Bicycle Scheme</h4>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Implementation Progress</span>
+                                            <strong>65%</strong>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-danger" style="width: 65%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">Bicycles Distributed</small>
+                                                <strong> 65,000 / 100,000</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">Budget Utilized</small>
+                                                <strong>₹32.5 Cr / ₹50 Cr</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <div class="p-3 bg-light rounded">
+                                                <small class="text-muted d-block">Last Updated</small>
+                                                <strong>18 June 2025</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <canvas id="bicycleChart" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- District Performance Table -->
+        <section class="dis-container mb-4" data-aos="fade-up">
+            <div class="card border-0">
+                <h2 class="h4 mb-0">
+                    <i class="fas fa-table text-primary me-2"></i>
+                    <span lang="en">District-wise Performance</span>
+                    <span lang="hi">जिलेवार प्रदर्शन</span>
+                </h2>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="districtTable">
+                            <thead>
+                                <tr>
+                                    <th><span lang="en">District</span><span lang="hi">जिला</span></th>
+                                    <th><span lang="en">Scheme</span><span lang="hi">योजना</span></th>
+                                    <th><span lang="en">Target</span><span lang="hi">लक्ष्य</span></th>
+                                    <th><span lang="en">Achieved</span><span lang="hi">प्राप्त</span></th>
+                                    <th><span lang="en">Coverage %</span><span lang="hi">कवरेज %</span></th>
+                                    <th><span lang="en">Status</span><span lang="hi">स्थिति</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bhopal</td>
+                                    <td><span lang="en">Free Uniforms</span><span lang="hi">मुफ्त वर्दी</span></td>
+                                    <td>120,000</td>
+                                    <td>118,000</td>
+                                    <td>98%</td>
+                                    <td><span class="badge bg-success"><span lang="en">On Track</span><span
+                                                lang="hi">ट्रैक पर</span></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Indore</td>
+                                    <td><span lang="en">Free Textbooks</span><span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                    </td>
+                                    <td>150,000</td>
+                                    <td>140,000</td>
+                                    <td>93%</td>
+                                    <td><span class="badge bg-success"><span lang="en">On Track</span><span
+                                                lang="hi">ट्रैक पर</span></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Jabalpur</td>
+                                    <td><span lang="en">Mid-Day Meal</span><span lang="hi">मध्याह्न भोजन</span></td>
+                                    <td>80,000</td>
+                                    <td>65,000</td>
+                                    <td>81%</td>
+                                    <td><span class="badge bg-warning"><span lang="en">In Progress</span><span
+                                                lang="hi">प्रगति पर</span></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Gwalior</td>
+                                    <td><span lang="en">Free Bicycles</span><span lang="hi">मुफ्त साइकिलें</span></td>
+                                    <td>50,000</td>
+                                    <td>30,000</td>
+                                    <td>60%</td>
+                                    <td><span class="badge bg-danger"><span lang="en">Delayed</span><span
+                                                lang="hi">विलंबित</span></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="row g-4 mb-4" data-aos="fade-up">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span lang="en">Scheme progress Comparison</span>
+                            <span lang="hi">योजना प्रगति तुलना</span>
+                        </h5>
+                        <canvas id="barChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span lang="en">Year-wise Beneficiaries</span>
+                            <span lang="hi">वार्षिक लाभार्थी</span>
+                        </h5>
+                        <canvas id="lineChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span lang="en">Demographic Distribution</span>
+                            <span lang="hi">जनसांख्यिकीय वितरण</span>
+                        </h5>
+                        <canvas id="pieChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Stories -->
+        <section class="success-container card mb-4" data-aos="fade-up">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card border-0">
+                        <h2 class="h4 mb-0">
+                            <i class="fa-solid fa-circle-check text-primary me-2"></i>
+                            <span lang="en">Success Stories & Testimonials</span>
+                            <span lang="hi">सफलता की कहानियाँ और प्रशंसापत्र</span>
+                        </h2>
+                    </div>
+                    <div class="container">
+                        <div class="card-body">
+                            <div id="successCarousel" class="carousel slide" data-bs-ride="carousel"
+                                data-bs-interval="4000" data-bs-pause="hover">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="row g-4 justify-content-center">
+                                            <div class="col-md-6">
+                                                <div class="testimonial-card p-4 h-100">
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <img src="https://randomuser.me/api/portraits/women/32.jpg"
+                                                            class="testimonial-img me-3">
+                                                        <div>
+                                                            <h6 class="mb-0">Priya Sharma</h6>
+                                                            <small class="text-muted">
+                                                                <span lang="en">Student, Class 8</span>
+                                                                <span lang="hi">छात्रा, कक्षा 8</span>
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                    <p class="mb-0">
+                                                        <span lang="en">"The free uniforms helped me attend school with
+                                                            dignity. I no longer feel different from my
+                                                            classmates."</span>
+                                                        <span lang="hi">"मुफ्त वर्दी ने मुझे गरिमा के साथ स्कूल जाने में
+                                                            मदद की। मैं अब अपने सहपाठियों से अलग महसूस नहीं
+                                                            करती।"</span>
+                                                    </p>
+                                                    <div class="mt-3 text-primary">
+                                                        <i class="fas fa-map-marker-alt"></i> Bhopal
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="testimonial-card p-4 h-100">
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <img src="https://randomuser.me/api/portraits/men/45.jpg"
+                                                            class="testimonial-img me-3">
+                                                        <div>
+                                                            <h6 class="mb-0">Rajesh Verma</h6>
+                                                            <small class="text-muted">School Principal</small>
+                                                        </div>
+                                                    </div>
+                                                    <p class="mb-0">"The textbook scheme has significantly improved our
+                                                        students' learning outcomes. Attendance has increased by 20%."
+                                                    </p>
+                                                    <div class="mt-3 text-primary">
+                                                        <i class="fas fa-map-marker-alt"></i> Indore
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Slide 2 with 2 cards -->
+                                    <div class="carousel-item">
+                                        <div class="row g-4 justify-content-center">
+                                            <div class="col-md-6">
+                                                <div class="testimonial-card p-4 h-100">
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <img src="https://randomuser.me/api/portraits/women/68.jpg"
+                                                            class="testimonial-img me-3">
+                                                        <div>
+                                                            <h6 class="mb-0">Sunita Patel</h6>
+                                                            <small class="text-muted">Parent</small>
+                                                        </div>
+                                                    </div>
+                                                    <p class="mb-0">"The mid-day meal program ensures my daughter gets
+                                                        at least one nutritious meal a day. It's a huge relief for our
+                                                        family."</p>
+                                                    <div class="mt-3 text-primary">
+                                                        <i class="fas fa-map-marker-alt"></i> Jabalpur
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="testimonial-card p-4 h-100">
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <img src="https://randomuser.me/api/portraits/women/44.jpg"
+                                                            class="testimonial-img me-3">
+                                                        <div>
+                                                            <h6 class="mb-0">Anjali Gupta</h6>
+                                                            <small class="text-muted">Teacher</small>
+                                                        </div>
+                                                    </div>
+                                                    <p class="mb-0">"The new teaching materials have made classroom
+                                                        instruction more effective and engaging for all students."</p>
+                                                    <div class="mt-3 text-primary">
+                                                        <i class="fas fa-map-marker-alt"></i> Gwalior
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#successCarousel"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#successCarousel"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 py-5 border rounded shadow-sm">
+                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/cCjtb14eVT8"
+                        title="Scooty Distribution Program" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Downloadable Reports -->
+        <section class="download-container card mb-4" data-aos="fade-up">
+            <div class="card border-0">
+                <h2 class="h4 mb-0">
+                    <i class="fas fa-file-alt text-primary me-2"></i>
+                    <span lang="en">Downloadable Reports</span>
+                    <span lang="hi">डाउनलोड करने योग्य रिपोर्ट</span>
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="card h-100 card1">
+                            <div class="card-body text-center">
+                                <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                                <h6>
+                                    <span lang="en">Annual Scheme Report 2024-25</span>
+                                    <span lang="hi">वार्षिक योजना रिपोर्ट 2024-25</span>
+                                </h6>
+                                <a href="#" class="btn btn-sm btn-outline-primary">
+                                    <span lang="en">Download</span>
+                                    <span lang="hi">डाउनलोड</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="card h-100 card2">
+                            <div class="card-body text-center">
+                                <i class="fas fa-book-reader fa-3x text-success mb-3"></i>
+                                <h6>Scheme Guidelines</h6>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="card h-100 card3">
+                            <div class="card-body text-center">
+                                <i class="fas fa-solid fa-award fa-3x text-primary mb-3"></i>
+                                <h6>Fund Utilization certificate</h6>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="card h-100 card4">
+                            <div class="card-body text-center">
+                                <i class="fas fa-book fa-3x text-warning mb-3"></i>
+                                <h6>RTI-disclosable data</h6>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="p-3 bg-warning"></div>
+    <!-- Footer with Feedback -->
+    <footer class=" text-white py-5" data-aos="fade-up">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>
+                        <span lang="en">Submit Feedback</span>
+                        <span lang="hi">प्रतिक्रिया सबमिट करें</span>
+                    </h5>
+                    <form id="feedbackForm">
+                        <div class="mb-3">
+                            <select class="form-select mb-2" id="schemeSelect">
+                                <option selected>
+                                    <span lang="en">Select Scheme</span>
+                                    <span lang="hi">योजना चुनें</span>
+                                </option>
+                                <!-- Options with translations -->
+                            </select>
+                            <textarea class="form-control mb-2" placeholder="Your feedback/query..."
+                                rows="3"></textarea>
+                            <button type="submit" class="btn btn-primary">
+                                <span lang="en">Submit</span>
+                                <span lang="hi">सबमिट करें</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h5>
+                        <span lang="en">Contact DPI</span>
+                        <span lang="hi">डीपीआई से संपर्क करें</span>
+                    </h5>
+                    <p><i class="fas fa-phone"></i>
+                        <span lang="en">Helpline: 1800-123-4567</span>
+                        <span lang="hi">हेल्पलाइन: 1800-123-4567</span>
+                    </p>
+                    <p><i class="fas fa-envelope"></i>
+                        <span lang="en">Email: education@mp.gov.in</span>
+                        <span lang="hi">ईमेल: education@mp.gov.in</span>
+                    </p>
+                    <p><i class="fas fa-map-marker-alt"></i>
+                        <span lang="en">Address: Directorate of Public Instruction, Bhopal, MP</span>
+                        <span lang="hi">पता: लोक शिक्षण निदेशालय, भोपाल, म.प्र.</span>
+                    </p>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3 pt-3 border-top">
+                <p class="mb-0">© 2025
+                    <span lang="en">Directorate of Public Instruction, Madhya Pradesh. All rights reserved.</span>
+                    <span lang="hi">लोक शिक्षण निदेशालय, मध्य प्रदेश। सर्वाधिकार सुरक्षित।</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Language Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set last updated date
+            const now = new Date();
+            document.getElementById('lastUpdated').textContent = formatDate(now);
+
+            // Initialize language
+            const savedLang = localStorage.getItem('dashboardLanguage') || 'en';
+            if (savedLang === 'hi') {
+                document.body.classList.add('hindi-active');
+                document.getElementById('langToggle').textContent = 'English / हिंदी';
+            }
+
+            // Toggle language
+            document.getElementById('langToggle').addEventListener('click', function () {
+                const isHindiActive = document.body.classList.toggle('hindi-active');
+                this.textContent = isHindiActive ? 'English' : 'हिंदी';
+                localStorage.setItem('dashboardLanguage', isHindiActive ? 'hi' : 'en');
+                updateChartLabels(isHindiActive);
+            });
+
+            function formatDate(date) {
+                const months = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"];
+                let day = date.getDate();
+                let month = months[date.getMonth()];
+                let year = date.getFullYear();
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12;
+                hours = hours ? hours : 12;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                return `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
+            }
+
+            function updateChartLabels(isHindiActive) {
+                // Update chart labels if needed
+                if (window.uniformChart) {
+                    uniformChart.data.labels = isHindiActive ?
+                        ['भोपाल', 'इंदौर', 'जबलपुर', 'ग्वालियर', 'उज्जैन', 'रीवा'] :
+                        ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior', 'Ujjain', 'Rewa'];
+                    uniformChart.update();
+                }
+
+                if (window.barChart) {
+                    barChart.options.scales.x.title.text = isHindiActive ?
+                        'योजना' : 'Scheme';
+                    barChart.update();
+                }
+            }
+        });
+    </script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Uniform Distribution Chart with hover expand effect
+            const uniformCtx = document.getElementById('uniformChart').getContext('2d');
+            new Chart(uniformCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior', 'Ujjain', 'Rewa'],
+                    datasets: [{
+                        label: 'Uniforms Distributed',
+                        data: [98000, 85000, 72000, 60000, 88000, 92000],
+                        backgroundColor: [
+                            'rgba(46, 204, 113, 0.7)',
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(155, 89, 182, 0.7)',
+                            'rgba(231, 76, 60, 0.7)',
+                            'rgba(241, 196, 15, 0.7)',
+                            'rgba(26, 188, 156, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(155, 89, 182, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(26, 188, 156, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverBackgroundColor: [
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(155, 89, 182, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(26, 188, 156, 1)'
+                        ],
+                        hoverBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#2c3e50',
+                            titleColor: '#ecf0f1',
+                            bodyColor: '#ecf0f1',
+                            borderColor: '#3498db',
+                            borderWidth: 1,
+                            padding: 12
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0,0,0,0.05)'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Number of Uniforms',
+                                font: {
+                                    weight: 'bold',
+                                    size: 12
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'District Name',
+                                font: {
+                                    weight: 'bold',
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    // Hover effects
+                    interaction: {
+                        mode: 'nearest',
+                        intersect: false
+                    },
+                    elements: {
+                        bar: {
+                            borderRadius: 4,
+                            hoverBorderRadius: 8,
+                            borderSkipped: false
+                        }
+                    },
+                    animation: {
+                        duration: 500
+                    }
+                }
+            });
+
+            // Free Uniforms Percentage Chart with hover expand effect
+            new Chart(
+                document.getElementById('barChart'),
+                {
+                    type: 'bar',
+                    data: {
+                        labels: ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior', 'Ujjain', 'Rewa'],
+                        datasets: [
+                            {
+                                label: 'Free Uniforms (%)',
+                                data: [3200000, 3800000, 4200000, 4700000, 5200000, 4200000].map(value => (value / 5200000 * 100).toFixed(1)),
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                                hoverBackgroundColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1,
+                                hoverBorderWidth: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return context.dataset.label + ': ' + context.raw + '%';
+                                    }
+                                },
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                title: {
+                                    display: true,
+                                    text: 'Percentage (%)'
+                                },
+                                ticks: {
+                                    callback: function (value) {
+                                        return value + '%';
+                                    }
+                                }
+                            }
+                        },
+                        // Hover effects
+                        interaction: {
+                            mode: 'nearest',
+                            intersect: false
+                        },
+                        elements: {
+                            bar: {
+                                borderRadius: 4,
+                                hoverBorderRadius: 8,
+                                borderSkipped: false
+                            }
+                        },
+                        animation: {
+                            duration: 500
+                        }
+                    }
+                }
+            );
+
+            // Mid-Day Meal Chart with hover expand effect
+            new Chart(
+                document.getElementById('mealChart'),
+                {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                        datasets: [{
+                            label: 'Schools Covered',
+                            data: [55000, 58000, 60000, 63000, 65000],
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            tension: 0.1,
+                            borderWidth: 3,
+                            pointBackgroundColor: 'rgb(75, 192, 192)',
+                            pointRadius: 5,
+                            pointHoverRadius: 8,
+                            pointBorderWidth: 2,
+                            pointHoverBorderWidth: 3,
+                            pointHoverBorderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Months',
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    }
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Number of Schools',
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    }
+                                }
+                            }
+                        },
+                        // Hover effects
+                        interaction: {
+                            mode: 'nearest',
+                            intersect: false
+                        },
+                        animation: {
+                            duration: 500
+                        }
+                    }
+                }
+            );
+
+            // Bicycle Distribution Chart with hover expand effect
+            new Chart(
+                document.getElementById('bicycleChart'),
+                {
+                    type: 'bar',
+                    data: {
+                        labels: ['Target', 'Achieved'],
+                        datasets: [{
+                            label: 'Bicycles',
+                            data: [100000, 65000],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.6)',
+                                'rgba(54, 162, 235, 0.6)'
+                            ],
+                            hoverBackgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)'
+                            ],
+                            borderWidth: 1,
+                            hoverBorderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: function (context) {
+                                        return `${context.dataset.label}: ${context.raw.toLocaleString()}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Types',
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    }
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Number of Bicycle',
+                                    font: {
+                                        weight: 'bold',
+                                        size: 12
+                                    }
+                                }
+                            }
+                        },
+                        // Hover effects
+                        interaction: {
+                            mode: 'nearest',
+                            intersect: false
+                        },
+                        elements: {
+                            bar: {
+                                borderRadius: 4,
+                                hoverBorderRadius: 8,
+                                borderSkipped: false
+                            }
+                        },
+                        animation: {
+                            duration: 500
+                        }
+                    }
+                }
+            );
+
+            // Textbook Distribution Chart with hover expand effect
+            const textbookCtx = document.getElementById('textbookChart').getContext('2d');
+            new Chart(textbookCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Bhopal', 'Indore', 'Jabalpur', 'Gwalior', 'Ujjain', 'Rewa'],
+                    datasets: [{
+                        label: 'Textbooks Distributed',
+                        data: [120000, 110000, 95000, 80000, 105000, 115000],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(155, 89, 182, 0.7)',
+                            'rgba(46, 204, 113, 0.7)',
+                            'rgba(241, 196, 15, 0.7)',
+                            'rgba(231, 76, 60, 0.7)',
+                            'rgba(26, 188, 156, 0.7)'
+                        ],
+                        hoverBackgroundColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(155, 89, 182, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(26, 188, 156, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#3498db',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                label: function (context) {
+                                    return `${context.dataset.label}: ${context.raw.toLocaleString()}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Textbook',
+                                font: {
+                                    weight: 'bold',
+                                    size: 12
+                                }
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Disrict Name',
+                                font: {
+                                    weight: 'bold',
+                                    size: 12
+                                }
+                            }
+                        }
+                    },
+                    // Hover effects
+                    interaction: {
+                        mode: 'nearest',
+                        intersect: false
+                    },
+                    elements: {
+                        bar: {
+                            borderRadius: 4,
+                            hoverBorderRadius: 8,
+                            borderSkipped: false
+                        }
+                    },
+                    animation: {
+                        duration: 500
+                    }
+                }
+            });
+
+            // Line Chart (Year-wise beneficiaries) with hover expand effect
+            new Chart(
+                document.getElementById('lineChart'),
+                {
+                    type: 'line',
+                    data: {
+                        labels: ['2021', '2022', '2023', '2024', '2025'],
+                        datasets: [
+                            {
+                                label: 'Free Uniforms',
+                                data: [3200000, 3800000, 4200000, 4700000, 5200000],
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                fill: true,
+                                borderWidth: 3,
+                                pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                                pointRadius: 5,
+                                pointHoverRadius: 8,
+                                pointBorderWidth: 2,
+                                pointHoverBorderWidth: 3,
+                                pointHoverBorderColor: '#fff'
+                            },
+                            {
+                                label: 'Free Textbooks',
+                                data: [3000000, 3500000, 4000000, 4500000, 4900000],
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                fill: true,
+                                borderWidth: 3,
+                                pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                                pointRadius: 5,
+                                pointHoverRadius: 8,
+                                pointBorderWidth: 2,
+                                pointHoverBorderWidth: 3,
+                                pointHoverBorderColor: '#fff'
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12
+                            }
+                        },
+                        // Hover effects
+                        interaction: {
+                            mode: 'nearest',
+                            intersect: false
+                        },
+                        animation: {
+                            duration: 500
+                        }
+                    }
+                }
+            );
+
+            // Pie Chart (Demographic Distribution) with hover expand effect
+            new Chart(
+                document.getElementById('pieChart'),
+                {
+                    type: 'pie',
+                    data: {
+                        labels: ['SC', 'ST', 'OBC', 'General'],
+                        datasets: [{
+                            data: [25, 20, 35, 20],
+                            backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                                '#4BC0C0'
+                            ],
+                            borderWidth: 1,
+                            hoverOffset: 15,
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: function (context) {
+                                        return `${context.label}: ${context.raw}%`;
+                                    }
+                                }
+                            }
+                        },
+                        // Hover effects
+                        animation: {
+                            duration: 500
+                        }
+                    }
+                }
+            );
+
+            // Feedback Form Submission
+            $('#feedbackForm').submit(function (e) {
+                e.preventDefault();
+                alert('Thank you for your feedback! We will contact you soon.');
+                this.reset();
+            });
+        });
+    </script>
+    <!-- Crousel -->
+    <script>
+        // Initialize carousel with enhanced options
+        document.addEventListener('DOMContentLoaded', function () {
+            const myCarousel = new bootstrap.Carousel(document.getElementById('successCarousel'), {
+                interval: 4000,
+                wrap: true,
+                pause: 'hover',
+                touch: true,
+                ride: 'carousel'
+            });
+
+            // Enhanced touch support with threshold
+            let touchStartX = 0;
+            const touchThreshold = 50;
+
+            const carouselElement = document.getElementById('successCarousel');
+
+            carouselElement.addEventListener('touchstart', function (e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            carouselElement.addEventListener('touchend', function (e) {
+                const touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+
+                if (diff > touchThreshold) {
+                    myCarousel.next();
+                } else if (diff < -touchThreshold) {
+                    myCarousel.prev();
+                }
+            }, { passive: true });
+
+            // Auto-adjust height when window resizes
+            function adjustCarouselHeight() {
+                const activeItems = document.querySelectorAll('.carousel-item.active .testimonial-card');
+                let maxHeight = 0;
+
+                activeItems.forEach(item => {
+                    if (item.offsetHeight > maxHeight) {
+                        maxHeight = item.offsetHeight;
+                    }
+                });
+
+                if (maxHeight > 0) {
+                    document.querySelectorAll('.carousel-item').forEach(item => {
+                        item.style.minHeight = `${maxHeight + 40}px`;
+                    });
+                }
+            }
+
+            // Initial adjustment and on resize
+            adjustCarouselHeight();
+            window.addEventListener('resize', adjustCarouselHeight);
+        });
+    </script>
+
+    <!-- date -->
+    <script>
+        function formatDate(date) {
+            const months = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+
+            let day = date.getDate();
+            let month = months[date.getMonth()];
+            let year = date.getFullYear();
+
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+
+            return `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if we have a stored update time
+            const storedUpdate = localStorage.getItem('lastContentUpdate');
+
+            // If we don't have one stored, or you want to force an update:
+            if (!storedUpdate || /* some condition when you update content */) {
+                const now = new Date();
+                const formattedDate = formatDate(now);
+                localStorage.setItem('lastContentUpdate', formattedDate);
+                document.getElementById('lastUpdated').textContent = formattedDate;
+            } else {
+                document.getElementById('lastUpdated').textContent = storedUpdate;
+            }
+        });
+    </script>
+    <script>
+        const data = {
+            "District A": [
+                { scheme: "Number of PM SHRI Schools", beneficiaries: "23,458" },
+                { scheme: "Scholarship Programs", beneficiaries: "12,345" },
+                { scheme: "Infrastructure Development", beneficiaries: "8,900" },
+                { scheme: "Teacher Training", beneficiaries: "5,432" },
+                { scheme: "Digital Learning Initiatives", beneficiaries: "3,210" }
+            ],
+            "District B": [
+                { scheme: "Number of PM SHRI Schools", beneficiaries: "15,678" },
+                { scheme: "Scholarship Programs", beneficiaries: "9,876" },
+                { scheme: "Infrastructure Development", beneficiaries: "7,654" },
+                { scheme: "Community Engagement", beneficiaries: "4,321" },
+                { scheme: "Health & Nutrition", beneficiaries: "3,210" }
+            ],
+            "District C": [
+                { scheme: "Number of PM SHRI Schools", beneficiaries: "5,678" },
+                { scheme: "Teacher Training", beneficiaries: "4,321" },
+                { scheme: "Sports & Extracurricular", beneficiaries: "2,345" }
+            ],
+            "District D": [
+                { scheme: "Number of PM SHRI Schools", beneficiaries: "18,234" },
+                { scheme: "Scholarship Programs", beneficiaries: "11,567" },
+                { scheme: "Infrastructure Development", beneficiaries: "9,876" },
+                { scheme: "Digital Learning Initiatives", beneficiaries: "6,789" },
+                { scheme: "Community Engagement", beneficiaries: "4,321" }
+            ],
+            "District E": [
+                { scheme: "Number of PM SHRI Schools", beneficiaries: "20,123" },
+                { scheme: "Teacher Training", beneficiaries: "10,456" },
+                { scheme: "Health & Nutrition", beneficiaries: "7,890" },
+                { scheme: "Sports & Extracurricular", beneficiaries: "5,432" }
+            ]
+        };
+
+        const colors = [
+            "#2563eb", // Blue
+            "#10b981", // Green
+            "#f59e0b", // Amber
+            "#ef4444", // Red
+            "#8b5cf6"  // Purple
+        ];
+
+        const districtSelect = document.getElementById("district");
+        const schemesBody = document.getElementById("schemes-body");
+        const MAX_SCHEMES_DEFAULT = 8;
+
+        // Function to parse beneficiary numbers (remove commas and convert to number)
+        function parseBeneficiaries(beneficiariesStr) {
+            return parseInt(beneficiariesStr.replace(/,/g, ''));
+        }
+
+        // Function to format numbers with commas
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Function to determine status based on beneficiary count
+        function getStatus(beneficiaries) {
+            const num = parseBeneficiaries(beneficiaries);
+            if (num > 10000) return "success";
+            if (num > 5000) return "warning";
+            return "danger";
+        }
+
+        // Populate district options
+        Object.keys(data).forEach((district) => {
+            const option = document.createElement("option");
+            option.value = district;
+            option.textContent = district;
+            districtSelect.appendChild(option);
+        });
+
+        // Set initial selection
+        districtSelect.selectedIndex = 1; // "All Districts" option
+
+        // Function to combine schemes data across all districts
+        function combineSchemesData() {
+            const schemeMap = {};
+
+            // Iterate through all districts
+            Object.keys(data).forEach(district => {
+                data[district].forEach(item => {
+                    const schemeName = item.scheme;
+                    const beneficiaries = parseBeneficiaries(item.beneficiaries);
+
+                    if (schemeMap[schemeName]) {
+                        // If scheme exists, add to the beneficiary count
+                        schemeMap[schemeName].beneficiaries += beneficiaries;
+                        schemeMap[schemeName].districts.push(district);
+                    } else {
+                        // Create new entry for the scheme
+                        schemeMap[schemeName] = {
+                            scheme: schemeName,
+                            beneficiaries: beneficiaries,
+                            districts: [district]
+                        };
+                    }
+                });
+            });
+
+            // Convert the map to an array and sort by beneficiary count (descending)
+            return Object.values(schemeMap).sort((a, b) => b.beneficiaries - a.beneficiaries);
+        }
+
+        // Render schemes based on selected district
+        function renderSchemes(district) {
+            schemesBody.innerHTML = "";
+
+            if (!district || district === "all") {
+                const combinedSchemes = combineSchemesData();
+
+                if (combinedSchemes.length === 0) {
+                    schemesBody.innerHTML = `<tr><td colspan="2" class="no-data">No data available.</td></tr>`;
+                    return;
+                }
+
+                combinedSchemes.slice(0, MAX_SCHEMES_DEFAULT).forEach((item, index) => {
+                    const tr = document.createElement("tr");
+
+                    const tdScheme = document.createElement("td");
+                    tdScheme.className = "scheme-cell";
+
+                    // Scheme icon
+                    const icon = document.createElement("i");
+                    icon.className = "fas fa-pentagon";
+                    icon.style.color = colors[index % colors.length];
+
+                    // Scheme name with status indicator
+                    const schemeContainer = document.createElement("div");
+                    schemeContainer.className = "scheme-name-container";
+
+                    const statusIndicator = document.createElement("span");
+                    statusIndicator.className = `status-indicator status-${getStatus(formatNumber(item.beneficiaries))}`;
+
+                    const schemeText = document.createElement("span");
+                    schemeText.textContent = item.scheme;
+
+                    schemeContainer.appendChild(statusIndicator);
+                    schemeContainer.appendChild(schemeText);
+
+                    tdScheme.appendChild(icon);
+                    tdScheme.appendChild(schemeContainer);
+
+                    // Beneficiaries cell
+                    const tdBeneficiaries = document.createElement("td");
+                    tdBeneficiaries.className = "beneficiaries-cell";
+                    tdBeneficiaries.textContent = `: ${formatNumber(item.beneficiaries)}`;
+
+                    tr.appendChild(tdScheme);
+                    tr.appendChild(tdBeneficiaries);
+                    schemesBody.appendChild(tr);
+                });
+
+                if (combinedSchemes.length > MAX_SCHEMES_DEFAULT) {
+                    const noteRow = document.createElement("tr");
+                    const noteCell = document.createElement("td");
+                    noteCell.colSpan = 2;
+                    noteCell.className = "no-data";
+                    noteCell.style.fontStyle = "italic";
+                    noteCell.style.fontWeight = "600";
+                    noteCell.textContent = `Showing top ${MAX_SCHEMES_DEFAULT} schemes by beneficiary count. Select a district to see all.`;
+                    noteRow.appendChild(noteCell);
+                    schemesBody.appendChild(noteRow);
+                }
+                return;
+            }
+
+            if (!data[district]) {
+                schemesBody.innerHTML = `<tr><td colspan="2" class="no-data">No data available for selected district.</td></tr>`;
+                return;
+            }
+
+            data[district].forEach((item, index) => {
+                const tr = document.createElement("tr");
+
+                const tdScheme = document.createElement("td");
+                tdScheme.className = "scheme-cell";
+
+                // Scheme icon
+                const icon = document.createElement("i");
+                icon.className = "fas fa-pentagon";
+                icon.style.color = colors[index % colors.length];
+
+                // Scheme name with status
+                const schemeContainer = document.createElement("div");
+                schemeContainer.className = "scheme-name-container";
+
+                const statusIndicator = document.createElement("span");
+                statusIndicator.className = `status-indicator status-${getStatus(item.beneficiaries)}`;
+
+                const schemeText = document.createElement("span");
+                schemeText.textContent = item.scheme;
+
+                schemeContainer.appendChild(statusIndicator);
+                schemeContainer.appendChild(schemeText);
+
+                tdScheme.appendChild(icon);
+                tdScheme.appendChild(schemeContainer);
+
+                // Beneficiaries cell
+                const tdBeneficiaries = document.createElement("td");
+                tdBeneficiaries.className = "beneficiaries-cell";
+                tdBeneficiaries.textContent = `: ${item.beneficiaries}`;
+
+                tr.appendChild(tdScheme);
+                tr.appendChild(tdBeneficiaries);
+                schemesBody.appendChild(tr);
+            });
+        }
+
+        // Initialize the view
+        renderSchemes("all");
+
+        // Add event listener for district selection
+        districtSelect.addEventListener("change", (e) => {
+            renderSchemes(e.target.value);
+        });
+    </script>
+
+</body>
+
+</html>
