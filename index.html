@@ -254,10 +254,11 @@
             background-size: cover !important;
             background-repeat: no-repeat;
             color: white;
-            background-position: fixed;
+            background-position: center;
             overflow: hidden;
 
         }
+        
 
         .tab-content {
             background: white;
@@ -383,176 +384,269 @@
         }
 
         .form-label-floating {
-      position: absolute;
-      top: 0.5rem;
-      left: 1.25rem;
-      background: #f8fafc;
-      padding: 0 0.375rem;
-      font-weight: 600;
-      font-size: 0.875rem;
-      color: #374151;
-      pointer-events: none;
-      transition: 0.2s ease all;
-      border-radius: 0.375rem;
-      border: 1.5px solid #3b82f6;
-    }
-    .select-wrapper {
-      position: relative;
-    }
-    select.form-select {
-      border-radius: 0.5rem;
-      padding-left: 1.25rem;
-      padding-top: 1.5rem;
-      padding-bottom: 0.5rem;
-      font-size: 1rem;
-      border: 2px solid #3b82f6;
-      color: #374151;
-      background-color: white;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-    }
-    .select-wrapper i.fa-chevron-down {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-      color: #3b82f6;
-      font-size: 1.25rem;
-    }
-    select.form-select:focus + .form-label-floating,
-    select.form-select:not(:placeholder-shown) + .form-label-floating {
-      top: -0.6rem;
-      left: 1rem;
-      font-size: 0.75rem;
-      color: #2563eb;
-      font-weight: 700;
-      border-color: #2563eb;
-      background: white;
-      padding: 0 0.25rem;
-    }
-    .card {
-      border-radius: 0.75rem;
-      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
-      border: none;
-    }
-    .card-header {
-      background-color: #2563eb;
-      color: white;
-      font-weight: 700;
-      font-size: 1.25rem;
-      border-radius: 0.75rem 0.75rem 0 0;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 1rem 1.5rem;
-    }
-    .card-header i {
-      font-size: 1.5rem;
-    }
-    table {
-      border-collapse: separate !important;
-      border-spacing: 0 0.5rem !important;
-      width: 100%;
-    }
-    thead th {
-      color: #2563eb;
-      font-weight: 700;
-      font-size: 0.875rem;
-      padding: 0.75rem 1.5rem;
-      text-align: left;
-      border-bottom: 2px solid #e0e7ff;
-    }
-    tbody {
-      display: block;
-      max-height: 18rem;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #2563eb #e0e7ff;
-    }
-    tbody::-webkit-scrollbar {
-      width: 8px;
-    }
-    tbody::-webkit-scrollbar-track {
-      background: #e0e7ff;
-      border-radius: 4px;
-    }
-    tbody::-webkit-scrollbar-thumb {
-      background-color: #2563eb;
-      border-radius: 4px;
-    }
-    tbody tr {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
-      background-color: white;
-      box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
-      border-radius: 0.5rem;
-      transition: background-color 0.2s ease;
-    }
-    tbody tr:hover {
-      background-color: #eff6ff;
-    }
-    tbody td {
-      padding: 0.75rem 1.5rem;
-      vertical-align: middle;
-      font-size: 1rem;
-      color: #374151;
-    }
-    tbody td.scheme-cell {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 500;
-    }
-    tbody td.scheme-cell i {
-      color: #2563eb;
-      font-size: 1.25rem;
-      flex-shrink: 0;
-    }
-    tbody td.beneficiaries-cell {
-      font-weight: 700;
-      text-align: right;
-      color: #1e40af;
-      white-space: nowrap;
-    }
-    .no-data {
-      text-align: center;
-      padding: 2rem;
-      color: #6b7280;
-      font-style: italic;
-      font-size: 1rem;
-    }
-    @media (max-width: 576px) {
-      .card-header {
-        font-size: 1rem;
-        padding: 0.75rem 1rem;
-      }
-      thead th, tbody td {
-        padding: 0.5rem 1rem;
-        font-size: 0.875rem;
-      }
-      tbody td.scheme-cell i {
-        font-size: 1rem;
-      }
-      tbody td.beneficiaries-cell {
-        font-size: 1rem;
-      }
-    }
+            position: absolute;
+            top: 0.5rem;
+            left: 1.25rem;
+            background: #f8fafc;
+            padding: 0 0.375rem;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #374151;
+            pointer-events: none;
+            transition: 0.2s ease all;
+            border-radius: 0.375rem;
+            border: 1.5px solid #3b82f6;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        select.form-select {
+            border-radius: 0.5rem;
+            padding-left: 1.25rem;
+            padding-top: 0.8rem;
+            padding-bottom: 0.5rem;
+            font-size: 1rem;
+            border: 2px solid #3b82f6;
+            color: #374151;
+            background-color: white;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .select-wrapper i.fa-chevron-down {
+            position: absolute;
+            right: 0.73rem;
+            top: 46%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #3b82f6;
+            font-size: 1.25rem;
+        }
+
+        select.form-select:focus+.form-label-floating,
+        select.form-select:not(:placeholder-shown)+.form-label-floating {
+            top: -0.6rem;
+            left: 1rem;
+            font-size: 0.75rem;
+            color: #2563eb;
+            font-weight: 700;
+            border-color: #2563eb;
+            background: white;
+            padding: 0 0.25rem;
+        }
+
+        /* Specific styles for the schemes table */
+        #schemes-table-container .card-table {
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+            border: none;
+        }
+
+        #schemes-table-container .card-header {
+            background-color: #2563eb;
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border-radius: 0.75rem 0.75rem 0 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+        }
+
+        #schemes-table-container .card-header i {
+            font-size: 1.5rem;
+        }
+
+        #schemes-table-container table {
+            border-collapse: separate !important;
+            border-spacing: 0 0.5rem !important;
+            width: 100%;
+        }
+
+        #schemes-table-container thead th {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 0.3rem 1.5rem;
+            text-align: left;
+            border-bottom: 2px solid #e0e7ff;
+        }
+
+        #schemes-table-container tbody {
+            display: block;
+            max-height: 18rem;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #2563eb #f1f5f9;
+            scrollbar-gutter: stable;
+        }
+
+        #schemes-table-container tbody::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        #schemes-table-container tbody::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+            margin: 4px;
+        }
+
+        #schemes-table-container tbody::-webkit-scrollbar-thumb {
+            background-color: #2563eb;
+            border-radius: 10px;
+            border: 2px solid #f1f5f9;
+        }
+
+        #schemes-table-container tbody::-webkit-scrollbar-thumb:hover {
+            background-color: #1d4ed8;
+        }
+
+        #schemes-table-container #schemes-table {
+            width: 100%;
+            display: table;
+        }
+
+        #schemes-table-container thead,
+        #schemes-table-container tbody tr {
+            display: table;
+            width: 100%;
+        }
+
+        #schemes-table-container tbody td {
+            padding: 0rem 1.5rem;
+            vertical-align: middle;
+            font-size: 1rem;
+            color: #374151;
+        }
+
+        #schemes-table-container tbody td.scheme-cell {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        #schemes-table-container tbody td.scheme-cell i {
+            color: #2563eb;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        #schemes-table-container tbody td.beneficiaries-cell {
+            font-weight: 700;
+            text-align: right;
+            color: #1e40af;
+            white-space: nowrap;
+        }
+
+        #schemes-table-container .no-data {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 576px) {
+            #schemes-table-container .card-header {
+                font-size: 1rem;
+                padding: 0.75rem 1rem;
+            }
+
+            #schemes-table-container thead th,
+            #schemes-table-container tbody td {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            #schemes-table-container tbody td.scheme-cell i {
+                font-size: 1rem;
+            }
+
+            #schemes-table-container tbody td.beneficiaries-cell {
+                font-size: 1rem;
+            }
+        }
+
+        /* Status indicator styles */
+        #schemes-table-container .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        #schemes-table-container .status-success {
+            background-color: #10b981;
+        }
+
+        #schemes-table-container .status-warning {
+            background-color: #f59e0b;
+        }
+
+        #schemes-table-container .status-danger {
+            background-color: #ef4444;
+        }
+
+        #schemes-table-container .scheme-name-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* District-wise performance table styles */
+        #districtTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #districtTable thead th {
+            background-color: #f8f9fa;
+            color: #495057;
+            font-weight: 600;
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        #districtTable tbody tr {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        #districtTable tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        #districtTable tbody tr:hover {
+            background-color: #e9ecef;
+        }
+
+        #districtTable tbody td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+
+        .svgshadow {
+            filter: drop-shadow(2px 4px 3px #22222251);
+        }
     </style>
 </head>
 
 <body>
     <!-- Header Section -->
-    <header class=" bg-warning text-dark py-0">
+    <header class=" bg-warning text-dark p-1">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
 
-                    <span lang="en">Government of Madhya Pradesh |
-                        School Education Department</span>
-                    <span lang="hi">मध्यप्रदेश शासन | स्कूल शिक्षा विभाग </span>
+                    <span lang="en">
+                        School Education Department Madhya Pradesh</span>
+                    <span lang="hi">स्कूल शिक्षा विभाग मध्यप्रदेश</span>
                 </div>
             </div>
         </div>
@@ -581,7 +675,7 @@
     </header>
 
     <!-- Navigation Menu -->
-    <nav class="sticky-top navbar-expand-lg navbar-dark p-2" style="background-image: url(assets/Footer.jpg);">
+    <nav class="sticky-top navbar-expand-lg navbar-dark p-2" style="background-image: url(assets/headerbg.jpg);">
         <div class="container ">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -678,7 +772,7 @@
             <div class="col-md-3 col-6">
                 <div class="kpi-card kpi-1">
                     <div class="icon"><i class="fas fa-users"></i></div>
-                    <div class="h5">
+                    <div class="h5 fw-bold">
                         <span lang="en">Total Students Benefitted</span>
                         <span lang="hi">लाभान्वित छात्र</span>
                     </div>
@@ -695,7 +789,7 @@
             <div class="col-md-3 col-6">
                 <div class="kpi-card kpi-2">
                     <div class="icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-                    <div class="h5">
+                    <div class="h5 fw-bold">
                         <span lang="en">Total Budget Allocated</span>
                         <span lang="hi">कुल बजट आवंटित</span>
                     </div>
@@ -712,7 +806,7 @@
             <div class="col-md-3 col-6">
                 <div class="kpi-card kpi-3">
                     <div class="icon"><i class="fas fa-book"></i></div>
-                    <div class="h5">
+                    <div class="h5 fw-bold">
                         <span lang="en">Total Materials Distributed</span>
                         <span lang="hi">वितरित सामग्री</span>
                     </div>
@@ -729,7 +823,7 @@
             <div class="col-md-3 col-6">
                 <div class="kpi-card kpi-4">
                     <div class="icon"><i class="fas fa-school"></i></div>
-                    <div class="h5">
+                    <div class="h5 fw-bold">
                         <span lang="en">Total Schools Covered</span>
                         <span lang="hi">कुल स्कूल कवर</span>
                     </div>
@@ -757,7 +851,8 @@
                         </h2>
                     </div>
                     <div class="text-left py-4 w-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" height="auto" version="1.1"
+                        <svg class="svgshadow" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" height="auto"
+                            version="1.1"
                             style="shape-rendering: geometricPrecision; width: auto;  text-rendering: geometricPrecision; image-rendering: optimizeQuality; fill-rule: evenodd; clip-rule: evenodd"
                             viewBox="0 0 8565 6134" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs>
@@ -2252,16 +2347,16 @@
                             <select id="district" class="form-select" aria-label="Select District" placeholder=" ">
                                 <option value="all" selected>All Districts</option>
                             </select>
-                            <label for="district" class="form-label-floating">District</label>
+                            <label for="district" class="form-label-floating ">District Name</label>
                             <i class="fas fa-chevron-down"></i>
                         </div>
 
-                        <div class="card">
+                        <div id="schemes-table-container" class="card-table">
                             <div class="card-header">
-                                <i class="fas fa-burst"></i>
+                                <i class="fas fa-project-diagram me-1"></i>
                                 Schemes Covered
                             </div>
-                            <div class="p-0">
+                            <div class="p-0 shadow rounded">
                                 <table aria-label="Schemes Covered Table" id="schemes-table" class="mb-0">
                                     <thead>
                                         <tr>
@@ -2542,27 +2637,31 @@
                                 </tr>
                                 <tr>
                                     <td>Indore</td>
-                                    <td>Free Textbooks</td>
+                                    <td><span lang="en">Free Textbooks</span><span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                    </td>
                                     <td>150,000</td>
                                     <td>140,000</td>
                                     <td>93%</td>
-                                    <td><span class="badge bg-success">On Track</span></td>
+                                    <td><span class="badge bg-success"><span lang="en">On Track</span><span
+                                                lang="hi">ट्रैक पर</span></span></td>
                                 </tr>
                                 <tr>
                                     <td>Jabalpur</td>
-                                    <td>Mid-Day Meal</td>
+                                    <td><span lang="en">Mid-Day Meal</span><span lang="hi">मध्याह्न भोजन</span></td>
                                     <td>80,000</td>
                                     <td>65,000</td>
                                     <td>81%</td>
-                                    <td><span class="badge bg-warning">In Progress</span></td>
+                                    <td><span class="badge bg-warning"><span lang="en">In Progress</span><span
+                                                lang="hi">प्रगति पर</span></span></td>
                                 </tr>
                                 <tr>
                                     <td>Gwalior</td>
-                                    <td>Free Bicycles</td>
+                                    <td><span lang="en">Free Bicycles</span><span lang="hi">मुफ्त साइकिलें</span></td>
                                     <td>50,000</td>
                                     <td>30,000</td>
                                     <td>60%</td>
-                                    <td><span class="badge bg-danger">Delayed</span></td>
+                                    <td><span class="badge bg-danger"><span lang="en">Delayed</span><span
+                                                lang="hi">विलंबित</span></span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2928,7 +3027,7 @@
         });
 
         document.addEventListener('DOMContentLoaded', function () {
-            // Uniform Distribution Chart
+            // Uniform Distribution Chart with hover expand effect
             const uniformCtx = document.getElementById('uniformChart').getContext('2d');
             new Chart(uniformCtx, {
                 type: 'bar',
@@ -2953,7 +3052,16 @@
                             'rgba(241, 196, 15, 1)',
                             'rgba(26, 188, 156, 1)'
                         ],
-                        borderWidth: 1
+                        borderWidth: 1,
+                        hoverBackgroundColor: [
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(155, 89, 182, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(26, 188, 156, 1)'
+                        ],
+                        hoverBorderWidth: 2
                     }]
                 },
                 options: {
@@ -2977,38 +3085,49 @@
                             beginAtZero: true,
                             grid: {
                                 color: 'rgba(0,0,0,0.05)'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Number of Uniforms',
+                                font: {
+                                    weight: 'bold',
+                                    size: 12
+                                }
                             }
                         },
                         x: {
                             grid: {
                                 display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'District Name',
+                                font: {
+                                    weight: 'bold',
+                                    size: 12
+                                }
                             }
                         }
                     },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'District Name',  // Your X-axis label
-                                font: {
-                                    weight: 'bold',
-                                    size: 12
-                                }
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Number of Uniforms',  // Your Y-axis label
-                                font: {
-                                    weight: 'bold',
-                                    size: 12
-                                }
-                            }
+                    // Hover effects
+                    interaction: {
+                        mode: 'nearest',
+                        intersect: false
+                    },
+                    elements: {
+                        bar: {
+                            borderRadius: 4,
+                            hoverBorderRadius: 8,
+                            borderSkipped: false
                         }
+                    },
+                    animation: {
+                        duration: 500
                     }
                 }
             });
+
+            // Free Uniforms Percentage Chart with hover expand effect
             new Chart(
                 document.getElementById('barChart'),
                 {
@@ -3021,7 +3140,9 @@
                                 data: [3200000, 3800000, 4200000, 4700000, 5200000, 4200000].map(value => (value / 5200000 * 100).toFixed(1)),
                                 borderColor: 'rgba(75, 192, 192, 1)',
                                 backgroundColor: 'rgba(75, 192, 192, 0.7)',
-                                borderWidth: 1
+                                hoverBackgroundColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1,
+                                hoverBorderWidth: 2
                             }
                         ]
                     },
@@ -3036,7 +3157,13 @@
                                     label: function (context) {
                                         return context.dataset.label + ': ' + context.raw + '%';
                                     }
-                                }
+                                },
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12
                             }
                         },
                         scales: {
@@ -3053,11 +3180,27 @@
                                     }
                                 }
                             }
+                        },
+                        // Hover effects
+                        interaction: {
+                            mode: 'nearest',
+                            intersect: false
+                        },
+                        elements: {
+                            bar: {
+                                borderRadius: 4,
+                                hoverBorderRadius: 8,
+                                borderSkipped: false
+                            }
+                        },
+                        animation: {
+                            duration: 500
                         }
                     }
                 }
             );
-            // Mid-Day Meal Chart
+
+            // Mid-Day Meal Chart with hover expand effect
             new Chart(
                 document.getElementById('mealChart'),
                 {
@@ -3069,7 +3212,15 @@
                             data: [55000, 58000, 60000, 63000, 65000],
                             fill: false,
                             borderColor: 'rgb(75, 192, 192)',
-                            tension: 0.1
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            tension: 0.1,
+                            borderWidth: 3,
+                            pointBackgroundColor: 'rgb(75, 192, 192)',
+                            pointRadius: 5,
+                            pointHoverRadius: 8,
+                            pointBorderWidth: 2,
+                            pointHoverBorderWidth: 3,
+                            pointHoverBorderColor: '#fff'
                         }]
                     },
                     options: {
@@ -3077,13 +3228,21 @@
                         plugins: {
                             legend: {
                                 display: false
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12
                             }
                         },
                         scales: {
                             x: {
                                 title: {
                                     display: true,
-                                    text: 'Months',  // Your X-axis label
+                                    text: 'Months',
                                     font: {
                                         weight: 'bold',
                                         size: 12
@@ -3093,18 +3252,27 @@
                             y: {
                                 title: {
                                     display: true,
-                                    text: 'Number of Schools',  // Your Y-axis label
+                                    text: 'Number of Schools',
                                     font: {
                                         weight: 'bold',
                                         size: 12
                                     }
                                 }
                             }
+                        },
+                        // Hover effects
+                        interaction: {
+                            mode: 'nearest',
+                            intersect: false
+                        },
+                        animation: {
+                            duration: 500
                         }
                     }
                 }
             );
-            // Bicycle Distribution Chart
+
+            // Bicycle Distribution Chart with hover expand effect
             new Chart(
                 document.getElementById('bicycleChart'),
                 {
@@ -3117,7 +3285,13 @@
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.6)',
                                 'rgba(54, 162, 235, 0.6)'
-                            ]
+                            ],
+                            hoverBackgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)'
+                            ],
+                            borderWidth: 1,
+                            hoverBorderWidth: 2
                         }]
                     },
                     options: {
@@ -3125,13 +3299,26 @@
                         plugins: {
                             legend: {
                                 display: false
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: function (context) {
+                                        return `${context.dataset.label}: ${context.raw.toLocaleString()}`;
+                                    }
+                                }
                             }
                         },
                         scales: {
                             x: {
                                 title: {
                                     display: true,
-                                    text: 'Types',  // Your X-axis label
+                                    text: 'Types',
                                     font: {
                                         weight: 'bold',
                                         size: 12
@@ -3141,20 +3328,34 @@
                             y: {
                                 title: {
                                     display: true,
-                                    text: 'Number of Bicycle',  // Your Y-axis label
+                                    text: 'Number of Bicycle',
                                     font: {
                                         weight: 'bold',
                                         size: 12
                                     }
                                 }
                             }
+                        },
+                        // Hover effects
+                        interaction: {
+                            mode: 'nearest',
+                            intersect: false
+                        },
+                        elements: {
+                            bar: {
+                                borderRadius: 4,
+                                hoverBorderRadius: 8,
+                                borderSkipped: false
+                            }
+                        },
+                        animation: {
+                            duration: 500
                         }
                     }
                 }
             );
 
-
-            // Textbook Distribution Chart
+            // Textbook Distribution Chart with hover expand effect
             const textbookCtx = document.getElementById('textbookChart').getContext('2d');
             new Chart(textbookCtx, {
                 type: 'bar',
@@ -3171,7 +3372,16 @@
                             'rgba(231, 76, 60, 0.7)',
                             'rgba(26, 188, 156, 0.7)'
                         ],
-                        borderWidth: 1
+                        hoverBackgroundColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(155, 89, 182, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(26, 188, 156, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverBorderWidth: 2
                     }]
                 },
                 options: {
@@ -3180,110 +3390,185 @@
                     plugins: {
                         legend: {
                             display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#3498db',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                label: function (context) {
+                                    return `${context.dataset.label}: ${context.raw.toLocaleString()}`;
+                                }
+                            }
                         }
                     },
                     scales: {
                         y: {
-                            beginAtZero: true
-                        }
-                    },
-                    scales: {
-                        x: {
+                            beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Disrict Name',  // Your X-axis label
+                                text: 'Number of Textbook',
                                 font: {
                                     weight: 'bold',
                                     size: 12
                                 }
                             }
                         },
-                        y: {
+                        x: {
                             title: {
                                 display: true,
-                                text: 'Number of Textbook',  // Your Y-axis label
+                                text: 'Disrict Name',
                                 font: {
                                     weight: 'bold',
                                     size: 12
                                 }
                             }
                         }
+                    },
+                    // Hover effects
+                    interaction: {
+                        mode: 'nearest',
+                        intersect: false
+                    },
+                    elements: {
+                        bar: {
+                            borderRadius: 4,
+                            hoverBorderRadius: 8,
+                            borderSkipped: false
+                        }
+                    },
+                    animation: {
+                        duration: 500
                     }
                 }
             });
 
-        });
-        // Line Chart (Year-wise beneficiaries)
-        new Chart(
-            document.getElementById('lineChart'),
-            {
-                type: 'line',
-                data: {
-                    labels: ['2021', '2022', '2023', '2024', '2025'],
-                    datasets: [
-                        {
-                            label: 'Free Uniforms',
-                            data: [3200000, 3800000, 4200000, 4700000, 5200000],
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            fill: true
-                        },
-                        {
-                            label: 'Free Textbooks',
-                            data: [3000000, 3500000, 4000000, 4500000, 4900000],
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            fill: true
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            }
-        );
-
-        // Pie Chart (Demographic Distribution)
-        new Chart(
-            document.getElementById('pieChart'),
-            {
-                type: 'pie',
-                data: {
-                    labels: ['SC', 'ST', 'OBC', 'General'],
-                    datasets: [{
-                        data: [25, 20, 35, 20],
-                        backgroundColor: [
-                            '#FF6384',
-                            '#36A2EB',
-                            '#FFCE56',
-                            '#4BC0C0'
+            // Line Chart (Year-wise beneficiaries) with hover expand effect
+            new Chart(
+                document.getElementById('lineChart'),
+                {
+                    type: 'line',
+                    data: {
+                        labels: ['2021', '2022', '2023', '2024', '2025'],
+                        datasets: [
+                            {
+                                label: 'Free Uniforms',
+                                data: [3200000, 3800000, 4200000, 4700000, 5200000],
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                fill: true,
+                                borderWidth: 3,
+                                pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                                pointRadius: 5,
+                                pointHoverRadius: 8,
+                                pointBorderWidth: 2,
+                                pointHoverBorderWidth: 3,
+                                pointHoverBorderColor: '#fff'
+                            },
+                            {
+                                label: 'Free Textbooks',
+                                data: [3000000, 3500000, 4000000, 4500000, 4900000],
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                fill: true,
+                                borderWidth: 3,
+                                pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                                pointRadius: 5,
+                                pointHoverRadius: 8,
+                                pointBorderWidth: 2,
+                                pointHoverBorderWidth: 3,
+                                pointHoverBorderColor: '#fff'
+                            }
                         ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12
+                            }
+                        },
+                        // Hover effects
+                        interaction: {
+                            mode: 'nearest',
+                            intersect: false
+                        },
+                        animation: {
+                            duration: 500
                         }
                     }
                 }
-            }
-        );
+            );
 
-        // Feedback Form Submission
-        $('#feedbackForm').submit(function (e) {
-            e.preventDefault();
-            alert('Thank you for your feedback! We will contact you soon.');
-            this.reset();
+            // Pie Chart (Demographic Distribution) with hover expand effect
+            new Chart(
+                document.getElementById('pieChart'),
+                {
+                    type: 'pie',
+                    data: {
+                        labels: ['SC', 'ST', 'OBC', 'General'],
+                        datasets: [{
+                            data: [25, 20, 35, 20],
+                            backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                                '#4BC0C0'
+                            ],
+                            borderWidth: 1,
+                            hoverOffset: 15,
+                            hoverBorderWidth: 2,
+                            hoverBorderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.8)',
+                                titleColor: '#fff',
+                                bodyColor: '#fff',
+                                borderColor: '#3498db',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    label: function (context) {
+                                        return `${context.label}: ${context.raw}%`;
+                                    }
+                                }
+                            }
+                        },
+                        // Hover effects
+                        animation: {
+                            duration: 500
+                        }
+                    }
+                }
+            );
+
+            // Feedback Form Submission
+            $('#feedbackForm').submit(function (e) {
+                e.preventDefault();
+                alert('Thank you for your feedback! We will contact you soon.');
+                this.reset();
+            });
         });
-
     </script>
+    <!-- Crousel -->
     <script>
         // Initialize carousel with enhanced options
         document.addEventListener('DOMContentLoaded', function () {
@@ -3339,8 +3624,9 @@
             window.addEventListener('resize', adjustCarouselHeight);
         });
     </script>
+
+    <!-- date -->
     <script>
-        // Function to format the date as "DD Month YYYY, HH:MM AM/PM"
         function formatDate(date) {
             const months = ["January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"];
@@ -3354,16 +3640,25 @@
             const ampm = hours >= 12 ? 'PM' : 'AM';
 
             hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
+            hours = hours ? hours : 12;
             minutes = minutes < 10 ? '0' + minutes : minutes;
 
             return `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
         }
 
-        // Set the last updated time when the page loads
         document.addEventListener('DOMContentLoaded', function () {
-            const now = new Date();
-            document.getElementById('lastUpdated').textContent = formatDate(now);
+            // Check if we have a stored update time
+            const storedUpdate = localStorage.getItem('lastContentUpdate');
+
+            // If we don't have one stored, or you want to force an update:
+            if (!storedUpdate || /* some condition when you update content */) {
+                const now = new Date();
+                const formattedDate = formatDate(now);
+                localStorage.setItem('lastContentUpdate', formattedDate);
+                document.getElementById('lastUpdated').textContent = formattedDate;
+            } else {
+                document.getElementById('lastUpdated').textContent = storedUpdate;
+            }
         });
     </script>
     <script>
@@ -3412,8 +3707,27 @@
 
         const districtSelect = document.getElementById("district");
         const schemesBody = document.getElementById("schemes-body");
+        const MAX_SCHEMES_DEFAULT = 8;
 
-        // Populate district options (except "All Districts" which is already added)
+        // Function to parse beneficiary numbers (remove commas and convert to number)
+        function parseBeneficiaries(beneficiariesStr) {
+            return parseInt(beneficiariesStr.replace(/,/g, ''));
+        }
+
+        // Function to format numbers with commas
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Function to determine status based on beneficiary count
+        function getStatus(beneficiaries) {
+            const num = parseBeneficiaries(beneficiaries);
+            if (num > 10000) return "success";
+            if (num > 5000) return "warning";
+            return "danger";
+        }
+
+        // Populate district options
         Object.keys(data).forEach((district) => {
             const option = document.createElement("option");
             option.value = district;
@@ -3421,54 +3735,87 @@
             districtSelect.appendChild(option);
         });
 
-        // Limit of schemes to show when "All Districts" selected
-        const MAX_SCHEMES_DEFAULT = 8;
+        // Set initial selection
+        districtSelect.selectedIndex = 1; // "All Districts" option
 
+        // Function to combine schemes data across all districts
+        function combineSchemesData() {
+            const schemeMap = {};
+
+            // Iterate through all districts
+            Object.keys(data).forEach(district => {
+                data[district].forEach(item => {
+                    const schemeName = item.scheme;
+                    const beneficiaries = parseBeneficiaries(item.beneficiaries);
+
+                    if (schemeMap[schemeName]) {
+                        // If scheme exists, add to the beneficiary count
+                        schemeMap[schemeName].beneficiaries += beneficiaries;
+                        schemeMap[schemeName].districts.push(district);
+                    } else {
+                        // Create new entry for the scheme
+                        schemeMap[schemeName] = {
+                            scheme: schemeName,
+                            beneficiaries: beneficiaries,
+                            districts: [district]
+                        };
+                    }
+                });
+            });
+
+            // Convert the map to an array and sort by beneficiary count (descending)
+            return Object.values(schemeMap).sort((a, b) => b.beneficiaries - a.beneficiaries);
+        }
+
+        // Render schemes based on selected district
         function renderSchemes(district) {
             schemesBody.innerHTML = "";
+
             if (!district || district === "all") {
-                // Show combined schemes from all districts, limited to MAX_SCHEMES_DEFAULT
-                const combinedSchemes = [];
-                Object.keys(data).forEach((dist) => {
-                    data[dist].forEach((item) => {
-                        combinedSchemes.push({
-                            district: dist,
-                            scheme: item.scheme,
-                            beneficiaries: item.beneficiaries,
-                        });
-                    });
-                });
+                const combinedSchemes = combineSchemesData();
 
                 if (combinedSchemes.length === 0) {
                     schemesBody.innerHTML = `<tr><td colspan="2" class="no-data">No data available.</td></tr>`;
                     return;
                 }
 
-                // Limit to MAX_SCHEMES_DEFAULT
-                const limitedSchemes = combinedSchemes.slice(0, MAX_SCHEMES_DEFAULT);
-
-                limitedSchemes.forEach((item, index) => {
+                combinedSchemes.slice(0, MAX_SCHEMES_DEFAULT).forEach((item, index) => {
                     const tr = document.createElement("tr");
 
                     const tdScheme = document.createElement("td");
                     tdScheme.className = "scheme-cell";
+
+                    // Scheme icon
                     const icon = document.createElement("i");
                     icon.className = "fas fa-pentagon";
                     icon.style.color = colors[index % colors.length];
-                    tdScheme.appendChild(icon);
-                    tdScheme.appendChild(document.createTextNode(`${item.scheme} (${item.district})`));
 
+                    // Scheme name with status indicator
+                    const schemeContainer = document.createElement("div");
+                    schemeContainer.className = "scheme-name-container";
+
+                    const statusIndicator = document.createElement("span");
+                    statusIndicator.className = `status-indicator status-${getStatus(formatNumber(item.beneficiaries))}`;
+
+                    const schemeText = document.createElement("span");
+                    schemeText.textContent = item.scheme;
+
+                    schemeContainer.appendChild(statusIndicator);
+                    schemeContainer.appendChild(schemeText);
+
+                    tdScheme.appendChild(icon);
+                    tdScheme.appendChild(schemeContainer);
+
+                    // Beneficiaries cell
                     const tdBeneficiaries = document.createElement("td");
                     tdBeneficiaries.className = "beneficiaries-cell";
-                    tdBeneficiaries.textContent = `: ${item.beneficiaries}`;
+                    tdBeneficiaries.textContent = `: ${formatNumber(item.beneficiaries)}`;
 
                     tr.appendChild(tdScheme);
                     tr.appendChild(tdBeneficiaries);
-
                     schemesBody.appendChild(tr);
                 });
 
-                // If total schemes exceed limit, show a note row
                 if (combinedSchemes.length > MAX_SCHEMES_DEFAULT) {
                     const noteRow = document.createElement("tr");
                     const noteCell = document.createElement("td");
@@ -3476,46 +3823,65 @@
                     noteCell.className = "no-data";
                     noteCell.style.fontStyle = "italic";
                     noteCell.style.fontWeight = "600";
-                    noteCell.textContent = `Showing first ${MAX_SCHEMES_DEFAULT} schemes out of ${combinedSchemes.length}. Please select a district to see all.`;
+                    noteCell.textContent = `Showing top ${MAX_SCHEMES_DEFAULT} schemes by beneficiary count. Select a district to see all.`;
                     noteRow.appendChild(noteCell);
                     schemesBody.appendChild(noteRow);
                 }
-
                 return;
             }
+
             if (!data[district]) {
                 schemesBody.innerHTML = `<tr><td colspan="2" class="no-data">No data available for selected district.</td></tr>`;
                 return;
             }
+
             data[district].forEach((item, index) => {
                 const tr = document.createElement("tr");
 
                 const tdScheme = document.createElement("td");
                 tdScheme.className = "scheme-cell";
+
+                // Scheme icon
                 const icon = document.createElement("i");
                 icon.className = "fas fa-pentagon";
                 icon.style.color = colors[index % colors.length];
-                tdScheme.appendChild(icon);
-                tdScheme.appendChild(document.createTextNode(item.scheme));
 
+                // Scheme name with status
+                const schemeContainer = document.createElement("div");
+                schemeContainer.className = "scheme-name-container";
+
+                const statusIndicator = document.createElement("span");
+                statusIndicator.className = `status-indicator status-${getStatus(item.beneficiaries)}`;
+
+                const schemeText = document.createElement("span");
+                schemeText.textContent = item.scheme;
+
+                schemeContainer.appendChild(statusIndicator);
+                schemeContainer.appendChild(schemeText);
+
+                tdScheme.appendChild(icon);
+                tdScheme.appendChild(schemeContainer);
+
+                // Beneficiaries cell
                 const tdBeneficiaries = document.createElement("td");
                 tdBeneficiaries.className = "beneficiaries-cell";
                 tdBeneficiaries.textContent = `: ${item.beneficiaries}`;
 
                 tr.appendChild(tdScheme);
                 tr.appendChild(tdBeneficiaries);
-
                 schemesBody.appendChild(tr);
             });
         }
 
-        // Initial render with limited combined data
+        // Initialize the view
         renderSchemes("all");
 
+        // Add event listener for district selection
         districtSelect.addEventListener("change", (e) => {
             renderSchemes(e.target.value);
         });
     </script>
+
 </body>
 
 </html>
