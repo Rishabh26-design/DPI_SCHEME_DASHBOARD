@@ -31,9 +31,9 @@
 
         body {
             font-family: sans-serif, 'Poppins', Verdana, Tahoma;
-            /* background-color: #f5f7fa; */
-            background-image: url(assets/bgmap.jpg);
-            background-size: contain;
+            /* background-color: #000000; */
+            background-image: url(assets/download.jpg);
+
 
         }
 
@@ -154,6 +154,7 @@
 
         .kpi-1 {
             --accent-color: var(--primary-blue);
+
         }
 
         .kpi-2 {
@@ -411,7 +412,7 @@
             padding-top: 0.8rem;
             padding-bottom: 0.5rem;
             font-size: 1rem;
-            border: 2px solid #3b82f6;
+            border: 2px solid #f6f6f6;
             color: #374151;
             background-color: white;
             appearance: none;
@@ -2679,10 +2680,33 @@
             <div class="col-md-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">
+                        <h5 class="card-title fw-bold">
                             <span lang="en">Scheme progress Comparison</span>
                             <span lang="hi">योजना प्रगति तुलना</span>
                         </h5>
+                        <select class="form-select mb-2" id="schemeSelect">
+                            <option selected>
+                                <span lang="en">Select Scheme /</span>
+                                <span lang="hi">योजना चुनें</span>
+                            </option>
+                            <option value="uniforms">
+                                <span lang="en">Free Uniforms /</span>
+                                <span lang="hi">मुफ्त वर्दी</span>
+                            </option>
+                            <option value="textbooks">
+                                <span lang="en">Free Textbooks /</span>
+                                <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                            </option>
+                            <option value="middaymeal">
+                                <span lang="en">Mid-Day Meal /</span>
+                                <span lang="hi">मध्याह्न भोजन</span>
+                            </option>
+                            <option value="bicycles">
+                                <span lang="en">Free Bicycles /</span>
+                                <span lang="hi">मुफ्त साइकिल</span>
+                            </option>
+                        </select>
+
                         <canvas id="barChart" height="300"></canvas>
                     </div>
                 </div>
@@ -2690,10 +2714,32 @@
             <div class="col-md-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">
+                        <h5 class="card-title fw-bold">
                             <span lang="en">Year-wise Beneficiaries</span>
                             <span lang="hi">वार्षिक लाभार्थी</span>
                         </h5>
+                        <select class="form-select mb-2" id="schemeSelect">
+                            <option selected>
+                                <span lang="en">Select Scheme /</span>
+                                <span lang="hi">योजना चुनें</span>
+                            </option>
+                            <option value="uniforms">
+                                <span lang="en">Free Uniforms /</span>
+                                <span lang="hi">मुफ्त वर्दी</span>
+                            </option>
+                            <option value="textbooks">
+                                <span lang="en">Free Textbooks /</span>
+                                <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                            </option>
+                            <option value="middaymeal">
+                                <span lang="en">Mid-Day Meal /</span>
+                                <span lang="hi">मध्याह्न भोजन</span>
+                            </option>
+                            <option value="bicycles">
+                                <span lang="en">Free Bicycles /</span>
+                                <span lang="hi">मुफ्त साइकिल</span>
+                            </option>
+                        </select>
                         <canvas id="lineChart" height="300"></canvas>
                     </div>
                 </div>
@@ -2701,10 +2747,32 @@
             <div class="col-md-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">
+                        <h5 class="card-title fw-bold">
                             <span lang="en">Demographic Distribution</span>
                             <span lang="hi">जनसांख्यिकीय वितरण</span>
                         </h5>
+                        <select class="form-select mb-2" id="schemeSelect">
+                            <option selected>
+                                <span lang="en">Select Scheme /</span>
+                                <span lang="hi">योजना चुनें</span>
+                            </option>
+                            <option value="uniforms">
+                                <span lang="en">Free Uniforms /</span>
+                                <span lang="hi">मुफ्त वर्दी</span>
+                            </option>
+                            <option value="textbooks">
+                                <span lang="en">Free Textbooks /</span>
+                                <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                            </option>
+                            <option value="middaymeal">
+                                <span lang="en">Mid-Day Meal /</span>
+                                <span lang="hi">मध्याह्न भोजन</span>
+                            </option>
+                            <option value="bicycles">
+                                <span lang="en">Free Bicycles /</span>
+                                <span lang="hi">मुफ्त साइकिल</span>
+                            </option>
+                        </select>
                         <canvas id="pieChart" height="300"></canvas>
                     </div>
                 </div>
