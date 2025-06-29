@@ -32,7 +32,8 @@
         body {
             font-family: sans-serif, 'Poppins', Verdana, Tahoma;
             /* background-color: #f5f7fa; */
-            background-image: url(assets/download.jpg);
+            background-image: url(assets/bgmap.jpg);
+            background-size: contain;
 
         }
 
@@ -72,7 +73,7 @@
         }
 
         .kpi-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-8px);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
             border-color: rgba(0, 0, 0, 0.05);
         }
@@ -83,7 +84,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 8px;
             background: linear-gradient(90deg, var(--accent-color), rgba(0, 0, 0, 0));
             transform: scaleX(0);
             transform-origin: left;
@@ -260,7 +261,7 @@
             overflow: hidden;
 
         }
-        
+
 
         .tab-content {
             background: white;
@@ -647,8 +648,8 @@
                 <div class="d-flex align-items-center">
 
                     <span lang="en">
-                        School Education Department Madhya Pradesh</span>
-                    <span lang="hi">स्कूल शिक्षा विभाग मध्यप्रदेश</span>
+                        School Education Department</span>
+                    <span lang="hi">स्कूल शिक्षा विभाग</span>
                 </div>
             </div>
         </div>
@@ -842,7 +843,7 @@
         </div>
 
         <!-- Interactive Map -->
-        
+
         <div class="map-container">
             <div class="row">
                 <div class="col-md-6">
@@ -2328,7 +2329,7 @@
                             </g>
                         </svg>
 
-                        <div class="mt-4" style="margin-left: 10rem;">
+                        <div class="mt-4 text-center">
                             <span class="badge bg-success me-2"><i class="fas fa-circle"></i>
                                 <span lang="en">On Track (38)</span>
                                 <span lang="hi">ट्रैक पर (38)</span>
@@ -2908,11 +2909,27 @@
                         <div class="mb-3">
                             <select class="form-select mb-2" id="schemeSelect">
                                 <option selected>
-                                    <span lang="en">Select Scheme</span>
+                                    <span lang="en">Select Scheme /</span>
                                     <span lang="hi">योजना चुनें</span>
                                 </option>
-                                <!-- Options with translations -->
+                                <option value="uniforms">
+                                    <span lang="en">Free Uniforms /</span>
+                                    <span lang="hi">मुफ्त वर्दी</span>
+                                </option>
+                                <option value="textbooks">
+                                    <span lang="en">Free Textbooks /</span>
+                                    <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                </option>
+                                <option value="middaymeal">
+                                    <span lang="en">Mid-Day Meal /</span>
+                                    <span lang="hi">मध्याह्न भोजन</span>
+                                </option>
+                                <option value="bicycles">
+                                    <span lang="en">Free Bicycles /</span>
+                                    <span lang="hi">मुफ्त साइकिल</span>
+                                </option>
                             </select>
+
                             <textarea class="form-control mb-2" placeholder="Your feedback/query..."
                                 rows="3"></textarea>
                             <button type="submit" class="btn btn-primary">
@@ -3739,7 +3756,7 @@
         });
 
         // Set initial selection
-        districtSelect.selectedIndex = 1; // "All Districts" option
+        districtSelect.selectedIndex = 0; // "All Districts" option
 
         // Function to combine schemes data across all districts
         function combineSchemesData() {
