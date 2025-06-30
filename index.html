@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schemes – Public Dashboard</title>
+    <title>SED Schemes – Public Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="assets/fevicon.png">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome (Icons) -->
@@ -26,6 +27,7 @@
             --primary-green: #00d97e;
             --primary-teal: #00cfd5;
             --primary-yellow: #dfac2e;
+            --primary-purple: #Bd76ee;
             --card-bg: #ffffff;
         }
 
@@ -169,6 +171,10 @@
             --accent-color: var(--primary-yellow);
         }
 
+        .kpi-5 {
+            --accent-color: var(--primary-purple);
+        }
+
         @media (max-width: 768px) {
             .kpi-card {
                 padding: 20px;
@@ -283,8 +289,8 @@
         }
 
         .nav-tabs .nav-link.active {
-            background: rgb(159, 204, 255);
-            color: black;
+            background: rgb(42 84 119);
+            color: rgb(255, 255, 255);
             font-weight: 600;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
         }
@@ -412,7 +418,7 @@
             padding-top: 0.8rem;
             padding-bottom: 0.5rem;
             font-size: 1rem;
-            border: 2px solid #f6f6f6;
+            border: 1px solid #2a5477;
             color: #374151;
             background-color: white;
             appearance: none;
@@ -450,7 +456,7 @@
         }
 
         #schemes-table-container .card-header {
-            background-color: #2563eb;
+            background-color: #2a5679;
             color: white;
             font-weight: 700;
             font-size: 1.25rem;
@@ -483,6 +489,7 @@
         #schemes-table-container tbody {
             display: block;
             max-height: 18rem;
+            min-height: 18rem;
             overflow-y: auto;
             scrollbar-width: thin;
             scrollbar-color: #2563eb #f1f5f9;
@@ -638,6 +645,7 @@
         .svgshadow {
             filter: drop-shadow(2px 4px 3px #22222251);
         }
+        
     </style>
 </head>
 
@@ -703,28 +711,59 @@
                         <ul class="dropdown-menu" aria-labelledby="schemesDropdown">
                             <li>
                                 <a class="dropdown-item" href="#uniforms">
-                                    <span lang="en">Free Uniforms</span>
-                                    <span lang="hi">मुफ्त वर्दी</span>
+                                    <span lang="en">Free Uniform Distribution</span>
+                                    <span lang="hi">मुफ्त वर्दी योजना</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#textbooks">
-                                    <span lang="en">Free Textbooks</span>
-                                    <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                    <span lang="en">Free Textbook Scheme</span>
+                                    <span lang="hi">मुफ्त पाठ्यपुस्तकें योजना</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#middaymeal">
-                                    <span lang="en">Mid-Day Meal</span>
-                                    <span lang="hi">मध्याह्न भोजन</span>
+                                    <span lang="en">Mid-Day Meal Program</span>
+                                    <span lang="hi">मध्याह्न भोजन आयोजन</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#bicycles">
-                                    <span lang="en">Free Bicycles</span>
-                                    <span lang="hi">मुफ्त साइकिल</span>
+                                    <span lang="en">Free Bicycle Scheme</span>
+                                    <span lang="hi">मुफ्त साइकिल योजना</span>
                                 </a>
                             </li>
+                            <li>
+                                <a class="dropdown-item" href="#bicycles">
+                                    <span lang="en">Scholarship & Incentive Schemes</span>
+                                    <span lang="hi">छात्रवृत्ति एवं प्रोत्साहन योजनाएं</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#bicycles">
+                                    <span lang="en">Girls Education Schemes</span>
+                                    <span lang="hi">बालिका शिक्षा योजनाएँ</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#bicycles">
+                                    <span lang="en">Digital Device Distribution</span>
+                                    <span lang="hi">डिजिटल डिवाइस वितरण</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#bicycles">
+                                    <span lang="en">RTE (Right to Education) Admissions & Reimbursements</span>
+                                    <span lang="hi">आरटीई (शिक्षा का अधिकार) प्रवेश और प्रतिपूर्ति</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#bicycles">
+                                    <span lang="en">CWSN Special Assistance</span>
+                                    <span lang="hi">सीडब्ल्यूएसएन विशेष सहायता</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -790,7 +829,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-2 col-6">
                 <div class="kpi-card kpi-2">
                     <div class="icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
                     <div class="h5 fw-bold">
@@ -800,14 +839,14 @@
                     <div class="h2 fw-bold">₹500 Cr</div>
                     <div class="card-footer">
                         <small>
-                            <span lang="en">₹480 Cr utilized</span>
-                            <span lang="hi">₹480 करोड़ उपयोग किया गया</span>
+                            <span lang="en">+5.5% from last year</span>
+                            <span lang="hi">पिछले वर्ष से +5.5%</span>
                         </small>
-                        <span class="badge"><i class="fas fa-check-circle me-1"></i>96%</span>
+                        <span class="badge"><i class="fas fa-arrow-up me-1"></i>5.5%</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-2 col-6">
                 <div class="kpi-card kpi-3">
                     <div class="icon"><i class="fas fa-book"></i></div>
                     <div class="h5 fw-bold">
@@ -817,14 +856,14 @@
                     <div class="h2 fw-bold">2000000</div>
                     <div class="card-footer">
                         <small>
-                            <span lang="en">98% target achieved</span>
-                            <span lang="hi">98% लक्ष्य प्राप्त</span>
+                            <span lang="en">+1.5% from last year</span>
+                            <span lang="hi">पिछले वर्ष से -1.5%</span>
                         </small>
-                        <span class="badge"><i class="fas fa-arrow-up me-1"></i>5.2%</span>
+                        <span class="badge"><i class="fas fa-arrow-down me-1"></i>-1.5%</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-6">
+            <div class="col-md-2 col-6">
                 <div class="kpi-card kpi-4">
                     <div class="icon"><i class="fas fa-school"></i></div>
                     <div class="h5 fw-bold">
@@ -834,10 +873,27 @@
                     <div class="h2 fw-bold">10000</div>
                     <div class="card-footer">
                         <small>
-                            <span lang="en">52 districts covered</span>
-                            <span lang="hi">52 जिले कवर</span>
+                            <span lang="en">+19.5% from last year</span>
+                            <span lang="hi">पिछले वर्ष से +19.5%</span>
                         </small>
-                        <span class="badge"><i class="fas fa-star me-1"></i>31 Golden</span>
+                        <span class="badge"><i class="fas fa-arrow-up me-1"></i>19.5%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="kpi-card kpi-5">
+                    <div class="icon"><i class="fa-solid fa-city"></i></div>
+                    <div class="h5 fw-bold">
+                        <span lang="en">District with 100% Coverage</span>
+                        <span lang="hi">100% कवरेज वाला जिले</span>
+                    </div>
+                    <div class="h2 fw-bold">29</div>
+                    <div class="card-footer">
+                        <small>
+                            <span lang="en">55 districts covered</span>
+                            <span lang="hi">55 जिले कवर</span>
+                        </small>
+                        <span class="badge"><i class="fas fa-star me-1"></i>20 Golden</span>
                     </div>
                 </div>
             </div>
@@ -2332,16 +2388,16 @@
 
                         <div class="mt-4 text-center">
                             <span class="badge bg-success me-2"><i class="fas fa-circle"></i>
-                                <span lang="en">On Track (38)</span>
-                                <span lang="hi">ट्रैक पर (38)</span>
+                                <span lang="en">On Track (20)</span>
+                                <span lang="hi">ट्रैक पर (20)</span>
                             </span>
                             <span class="badge bg-warning text-dark me-2"><i class="fas fa-circle"></i>
-                                <span lang="en">In Progress (10)</span>
-                                <span lang="hi">प्रगति पर (10)</span>
+                                <span lang="en">In Progress (17)</span>
+                                <span lang="hi">प्रगति पर (17)</span>
                             </span>
                             <span class="badge bg-danger me-2"><i class="fas fa-circle"></i>
-                                <span lang="en">Delayed (4)</span>
-                                <span lang="hi">विलंबित (4)</span>
+                                <span lang="en">Delayed (18)</span>
+                                <span lang="hi">विलंबित (18)</span>
                             </span>
                         </div>
                     </div>
@@ -2676,8 +2732,8 @@
         </section>
 
         <!-- Charts Section -->
-        <section class="row g-4 mb-4" data-aos="fade-up">
-            <div class="col-md-4">
+        <section class="row g-4 mb-4">
+            <div class="col-md-4" data-aos="fade-left">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">
@@ -2711,7 +2767,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">
@@ -2744,12 +2800,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" data-aos="fade-right">
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">
-                            <span lang="en">Demographic Distribution</span>
-                            <span lang="hi">जनसांख्यिकीय वितरण</span>
+                            <span lang="en">Category-wise Distribution</span>
+                            <span lang="hi">श्रेणीवार वितरण</span>
                         </h5>
                         <select class="form-select mb-2" id="schemeSelect">
                             <option selected>
@@ -2803,7 +2859,10 @@
                                                         <img src="https://randomuser.me/api/portraits/women/32.jpg"
                                                             class="testimonial-img me-3">
                                                         <div>
-                                                            <h6 class="mb-0">Priya Sharma</h6>
+                                                            <h6 class="mb-0">
+                                                                <span lang="en">Priya Sharma</span>
+                                                                <span lang="hi">प्रिया शर्मा</span>
+                                                            </h6>
                                                             <small class="text-muted">
                                                                 <span lang="en">Student, Class 8</span>
                                                                 <span lang="hi">छात्रा, कक्षा 8</span>
@@ -2829,12 +2888,25 @@
                                                         <img src="https://randomuser.me/api/portraits/men/45.jpg"
                                                             class="testimonial-img me-3">
                                                         <div>
-                                                            <h6 class="mb-0">Rajesh Verma</h6>
-                                                            <small class="text-muted">School Principal</small>
+                                                            <h6 class="mb-0">
+                                                                <span lang="en">Rajesh Verma</span>
+                                                                <span lang="hi">राजेश वर्मा</span>
+
+                                                            </h6>
+                                                            <small class="text-muted">
+                                                                <span lang="en">School Principle</span>
+                                                                <span lang="hi">स्कूल प्राचार्य</span>
+                                                            </small>
                                                         </div>
                                                     </div>
-                                                    <p class="mb-0">"The textbook scheme has significantly improved our
-                                                        students' learning outcomes. Attendance has increased by 20%."
+                                                    <p class="mb-0">
+                                                        <span lang="en">"The textbook scheme has significantly improved
+                                                            our
+                                                            students' learning outcomes. Attendance has increased by
+                                                            20%."</span>
+                                                        <span lang="hi">"पाठ्यपुस्तक योजना ने हमारे छात्रों के सीखने के
+                                                            परिणामों में उल्लेखनीय सुधार किया है। उपस्थिति में 20% की
+                                                            वृद्धि हुई है।"</span>
                                                     </p>
                                                     <div class="mt-3 text-primary">
                                                         <i class="fas fa-map-marker-alt"></i> Indore
@@ -2852,13 +2924,28 @@
                                                         <img src="https://randomuser.me/api/portraits/women/68.jpg"
                                                             class="testimonial-img me-3">
                                                         <div>
-                                                            <h6 class="mb-0">Sunita Patel</h6>
-                                                            <small class="text-muted">Parent</small>
+                                                            <h6 class="mb-0">
+                                                                <span lang="en">Sunita Patel</span>
+                                                                <span lang="hi">सुनीता पटेल</span>
+
+                                                            </h6>
+                                                            <small class="text-muted">
+                                                                <span lang="en">Parent </span>
+                                                                <span lang="hi">अभिभावक</span>
+                                                            </small>
                                                         </div>
                                                     </div>
-                                                    <p class="mb-0">"The mid-day meal program ensures my daughter gets
-                                                        at least one nutritious meal a day. It's a huge relief for our
-                                                        family."</p>
+                                                    <p class="mb-0">
+                                                        <span lang="en">"The mid-day meal program ensures my daughter
+                                                            gets
+                                                            at least one nutritious meal a day. It's a huge relief for
+                                                            our
+                                                            family."</span>
+                                                        <span lang="hi">
+                                                            "मिड-डे मील कार्यक्रम सुनिश्चित करता है कि मेरी बेटी को दिन
+                                                            में कम से कम एक बार पौष्टिक भोजन मिले। यह हमारे परिवार के
+                                                            लिए बहुत बड़ी राहत है।"</span>
+                                                    </p>
                                                     <div class="mt-3 text-primary">
                                                         <i class="fas fa-map-marker-alt"></i> Jabalpur
                                                     </div>
@@ -2871,12 +2958,26 @@
                                                         <img src="https://randomuser.me/api/portraits/women/44.jpg"
                                                             class="testimonial-img me-3">
                                                         <div>
-                                                            <h6 class="mb-0">Anjali Gupta</h6>
-                                                            <small class="text-muted">Teacher</small>
+                                                            <h6 class="mb-0">
+                                                                <span lang="en">Anjali Gupta</span>
+                                                                <span lang="hi">अंजलि गुप्ता</span>
+
+                                                            </h6>
+                                                            <small class="text-muted">
+                                                                <span lang="en">Teacher</span>
+                                                                <span lang="hi">शिक्षक</span>
+                                                            </small>
                                                         </div>
                                                     </div>
-                                                    <p class="mb-0">"The new teaching materials have made classroom
-                                                        instruction more effective and engaging for all students."</p>
+                                                    <p class="mb-0">
+                                                        <span lang="en">"The new teaching materials have made classroom
+                                                            instruction more effective and engaging for all
+                                                            students."</span>
+                                                        <span lang="hi">
+
+                                                            "नई शिक्षण सामग्री ने कक्षा शिक्षण को सभी छात्रों के लिए
+                                                            अधिक प्रभावी और आकर्षक बना दिया है।"</span>
+                                                    </p>
                                                     <div class="mt-3 text-primary">
                                                         <i class="fas fa-map-marker-alt"></i> Gwalior
                                                     </div>
@@ -3751,38 +3852,425 @@
     </script>
     <script>
         const data = {
-            "District A": [
-                { scheme: "Number of PM SHRI Schools", beneficiaries: "23,458" },
-                { scheme: "Scholarship Programs", beneficiaries: "12,345" },
-                { scheme: "Infrastructure Development", beneficiaries: "8,900" },
-                { scheme: "Teacher Training", beneficiaries: "5,432" },
-                { scheme: "Digital Learning Initiatives", beneficiaries: "3,210" }
+            "Agar Malwa": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "23,458" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "12,345" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "8,900" },
+                { scheme: "Free Bicycle Scheme", beneficiaries: "5,432" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "3,210" },
+                { scheme: "Girls Education Schemes", beneficiaries: "3,210" },
+                { scheme: "Digital Device Distribution", beneficiaries: "3,210" },
+                { scheme: "RTE (Right to Education) Admissions & Reimbursements", beneficiaries: "3,210" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" }
             ],
-            "District B": [
-                { scheme: "Number of PM SHRI Schools", beneficiaries: "15,678" },
-                { scheme: "Scholarship Programs", beneficiaries: "9,876" },
-                { scheme: "Infrastructure Development", beneficiaries: "7,654" },
-                { scheme: "Community Engagement", beneficiaries: "4,321" },
-                { scheme: "Health & Nutrition", beneficiaries: "3,210" }
+            "Alirajpur": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "15,678" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "9,876" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "7,654" },
+                { scheme: "Free Bicycle Scheme", beneficiaries: "4,321" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "3,210" }
             ],
-            "District C": [
-                { scheme: "Number of PM SHRI Schools", beneficiaries: "5,678" },
-                { scheme: "Teacher Training", beneficiaries: "4,321" },
-                { scheme: "Sports & Extracurricular", beneficiaries: "2,345" }
+            "Anuppur": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "5,678" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "4,321" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "2,345" }
             ],
-            "District D": [
-                { scheme: "Number of PM SHRI Schools", beneficiaries: "18,234" },
-                { scheme: "Scholarship Programs", beneficiaries: "11,567" },
-                { scheme: "Infrastructure Development", beneficiaries: "9,876" },
-                { scheme: "Digital Learning Initiatives", beneficiaries: "6,789" },
-                { scheme: "Community Engagement", beneficiaries: "4,321" }
+            "Ashoknagar": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "18,234" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "11,567" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "9,876" },
+                { scheme: "Girls Education Schemes", beneficiaries: "6,789" },
+                { scheme: "Free Bicycle Scheme", beneficiaries: "4,321" }
             ],
-            "District E": [
-                { scheme: "Number of PM SHRI Schools", beneficiaries: "20,123" },
-                { scheme: "Teacher Training", beneficiaries: "10,456" },
-                { scheme: "Health & Nutrition", beneficiaries: "7,890" },
-                { scheme: "Sports & Extracurricular", beneficiaries: "5,432" }
+            "Balaghat": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
             ]
+            ,
+            "Barwani": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Betul": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Bhind": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Bhopal": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Burhanpur": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Chhatarpur": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Chhindwara": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Damoh": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Datia": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Dewas": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Dhar": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Dindori": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Khandwa": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Guna": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Gwalior": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Harda": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Hoshangabad": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Indore": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Jabalpur": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Jhabua": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Katni": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Mandla": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Mandsaur": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Morena": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Narsinghpur": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Neemuch": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+
+            ,
+            "Niwari": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ],
+            "Panna": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Raisen": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Rajgarh": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Ratlam": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Rewa": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Sagar": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Satna": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Satna": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Seoni": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Shahdol": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Shajapur": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Sheopur": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Shivpuri": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Sidhi": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Singrauli": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Tikamgarh": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Ujjain": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Umaria": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Vidisha": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Khargone": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Pandhurna": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Maihar": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+            ,
+            "Mauganj": [
+                { scheme: "Free Uniform Distribution", beneficiaries: "20,123" },
+                { scheme: "Free Textbook Scheme", beneficiaries: "10,456" },
+                { scheme: "Scholarship & Incentive Schemes", beneficiaries: "7,890" },
+                { scheme: "CWSN Special Assistance", beneficiaries: "3,210" },
+                { scheme: "Mid-Day Meal Program", beneficiaries: "5,432" }
+            ]
+
+
         };
 
         const colors = [
@@ -3795,7 +4283,7 @@
 
         const districtSelect = document.getElementById("district");
         const schemesBody = document.getElementById("schemes-body");
-        const MAX_SCHEMES_DEFAULT = 8;
+        const MAX_SCHEMES_DEFAULT = 15;
 
         // Function to parse beneficiary numbers (remove commas and convert to number)
         function parseBeneficiaries(beneficiariesStr) {
