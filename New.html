@@ -39,9 +39,53 @@
             font-family: sans-serif, 'Poppins', Verdana, Tahoma;
             /* background-color: #000000; */
             background-image: url(assets/download.jpg);
-            background-position: fixed;
+        }
 
-
+        /* Full width background containers */
+        .full-width-bg {
+            position: relative;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        .full-width-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Unique background colors for each section */
+        .kpi-bg::before {
+            background-color: #f8f9fa;
+        }
+        
+        .map-bg::before {
+            background-color: #e9f5ff;
+        }
+        
+        .tabs-bg::before {
+            background-color: #f0f8ff;
+        }
+        
+        .district-bg::before {
+            background-color: #f5f9ff;
+        }
+        
+        .charts-bg::before {
+            background-color: #f0f5ff;
+        }
+        
+        .success-bg::before {
+            background-color: #f8f5ff;
+        }
+        
+        .download-bg::before {
+            background-color: #f5f0ff;
         }
 
         /* Language Toggle Styles */
@@ -182,9 +226,6 @@
             align-items: center;
         }
 
-
-
-
         .kpi-card small {
             color: #95aac9;
             font-size: 0.75rem;
@@ -203,31 +244,26 @@
             --accent-color: var(--primary-blue);
             --card-bg: var(--card-bg-1);
             outline: 2px solid var(--primary-blue);
-            /* box-shadow: 10px 10px 52px -25px var(--primary-blue) inset; */
         }
         .kpi-2 {
             --accent-color: var(--primary-green);
             --card-bg: var(--card-bg-2);
             outline: 2px solid var(--primary-green);
-            /* box-shadow: 10px 10px 52px -25px var(--primary-green) inset; */
         }
         .kpi-3 {
             --accent-color: var(--primary-teal);
             --card-bg: var(--card-bg-3);
             outline: 2px solid var(--primary-teal);
-            /* box-shadow: 10px 10px 52px -25px var(--primary-teal) inset; */
         }
         .kpi-4 {
             --accent-color: var(--primary-yellow);
             --card-bg: var(--card-bg-4);
             outline: 2px solid var(--primary-yellow);
-            /* box-shadow: 10px 10px 52px -25px var(--primary-yellow) inset; */
         }
         .kpi-5 {
             --accent-color: var(--primary-purple);
             --card-bg: var(--card-bg-5);
             outline:  2px solid var(--primary-purple);
-             /* box-shadow: 10px 10px 52px -25px var(--primary-purple) inset; */
         }
 
         @media (max-width: 768px) {
@@ -321,9 +357,7 @@
             color: white;
             background-position: center;
             overflow: hidden;
-
         }
-
 
         .tab-content {
             background: white;
@@ -445,7 +479,6 @@
             .spa {
                 gap: 0.5rem !important;
             }
-
         }
 
         .form-label-floating {
@@ -847,126 +880,132 @@
     </nav>
 
     <main class="container py-4">
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <h2 class="h4">
-                    <i class="fas fa-tachometer-alt text-primary me-2"></i>
-                    <span lang="en">Scheme Performance Overview</span>
-                    <span lang="hi">योजना प्रदर्शन अवलोकन</span>
-                </h2>
-            </div>
-            <div class="col-md-6 text-md-end">
-                <div class="text-muted small">
-                    <span lang="en">Last Updated:</span>
-                    <span lang="hi">अंतिम अद्यतन:</span>
-                    <span class="fw-bold" id="lastUpdated">24 June 2025, 10:30 AM</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Highlight KPIs -->
-        <div class="row g-4 mb-4">
-            <div class="col-md-3 col-6">
-                <div class="kpi-card kpi-1">
-                    <div class="icon"><i class="fas fa-users"></i></div>
-                    <div class="h5 fw-bold" >
-                        <span lang="en">Total Students Benefitted</span>
-                        <span lang="hi">लाभान्वित छात्र</span>
-                    </div>
-                    <div class="h2 fw-bold">1500000</div>
-                    <div class="card-footer1">
-                        <small>
-                            <span lang="en">+12.5% from last year</span>
-                            <span lang="hi">पिछले वर्ष से +12.5%</span>
-                        </small>
-                        <span class="badge"><i class="fas fa-arrow-up me-1"></i>12.5%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-6">
-                <div class="kpi-card kpi-2">
-                    <div class="icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-                    <div class="h5 fw-bold" s>
-                        <span lang="en">Total Budget Allocated</span>
-                        <span lang="hi">कुल बजट आवंटित</span>
-                    </div>
-                    <div class="h2 fw-bold">₹500 Cr</div>
-                    <div class="card-footer2">
-                        <small>
-                            <span lang="en">+5.5% from last year</span>
-                            <span lang="hi">पिछले वर्ष से +5.5%</span>
-                        </small>
-                        <span class="badge"><i class="fas fa-arrow-up me-1"></i>5.5%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-6">
-                <div class="kpi-card kpi-3">
-                    <div class="icon"><i class="fas fa-book"></i></div>
-                    <div class="h5 fw-bold" >
-                        <span lang="en">Total Materials Distributed</span>
-                        <span lang="hi">वितरित सामग्री</span>
-                    </div>
-                    <div class="h2 fw-bold">2000000</div>
-                    <div class="card-footer3">
-                        <small>
-                            <span lang="en">+1.5% from last year</span>
-                            <span lang="hi">पिछले वर्ष से -1.5%</span>
-                        </small>
-                        <span class="badge"><i class="fas fa-arrow-down me-1"></i>-1.5%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-6">
-                <div class="kpi-card kpi-4">
-                    <div class="icon"><i class="fas fa-school"></i></div>
-                    <div class="h5 fw-bold" >
-                        <span lang="en">Total Schools Covered</span>
-                        <span lang="hi">कुल स्कूल कवर</span>
-                    </div>
-                    <div class="h2 fw-bold">10000</div>
-                    <div class="card-footer4">
-                        <small>
-                            <span lang="en">+19.5% from last year</span>
-                            <span lang="hi">पिछले वर्ष से +19.5%</span>
-                        </small>
-                        <span class="badge"><i class="fas fa-arrow-up me-1"></i>19.5%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 ">
-                <div class="kpi-card kpi-5">
-                    <div class="icon"><i class="fa-solid fa-city"></i></div>
-                    <div class="h5 fw-bold" >
-                        <span lang="en">District with 100% Coverage</span>
-                        <span lang="hi">100% कवरेज वाला जिले</span>
-                    </div>
-                    <div class="h2 fw-bold">29</div>
-                    <div class="card-footer5">
-                        <small>
-                            <span lang="en">55 districts covered</span>
-                            <span lang="hi">55 जिले कवर</span>
-                        </small>
-                        <span class="badge"><i class="fas fa-star me-1"></i>20 Golden</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Interactive Map Section -->
-
-        <div class="map-container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h2 class="h4 mb-0">
-                            <i class="fas fa-map-marked-alt text-primary me-2"></i>
-                            <span lang="en">Scheme Coverage Across Districts</span>
-                            <span lang="hi">जिलों में योजना कवरेज</span>
+        <!-- KPI Cards Section with full width background -->
+        <div class="full-width-bg kpi-bg">
+            <div class="container">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h2 class="h4">
+                            <i class="fas fa-tachometer-alt text-primary me-2"></i>
+                            <span lang="en">Scheme Performance Overview</span>
+                            <span lang="hi">योजना प्रदर्शन अवलोकन</span>
                         </h2>
                     </div>
-                    <div class="text-left py-4 w-100">
-                        <svg class="svgshadow" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" height="auto"
+                    <div class="col-md-6 text-md-end">
+                        <div class="text-muted small">
+                            <span lang="en">Last Updated:</span>
+                            <span lang="hi">अंतिम अद्यतन:</span>
+                            <span class="fw-bold" id="lastUpdated">24 June 2025, 10:30 AM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Highlight KPIs -->
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3 col-6">
+                        <div class="kpi-card kpi-1">
+                            <div class="icon"><i class="fas fa-users"></i></div>
+                            <div class="h5 fw-bold">
+                                <span lang="en">Total Students Benefitted</span>
+                                <span lang="hi">लाभान्वित छात्र</span>
+                            </div>
+                            <div class="h2 fw-bold">1500000</div>
+                            <div class="card-footer1">
+                                <small>
+                                    <span lang="en">+12.5% from last year</span>
+                                    <span lang="hi">पिछले वर्ष से +12.5%</span>
+                                </small>
+                                <span class="badge"><i class="fas fa-arrow-up me-1"></i>12.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <div class="kpi-card kpi-2">
+                            <div class="icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                            <div class="h5 fw-bold">
+                                <span lang="en">Total Budget Allocated</span>
+                                <span lang="hi">कुल बजट आवंटित</span>
+                            </div>
+                            <div class="h2 fw-bold">₹500 Cr</div>
+                            <div class="card-footer2">
+                                <small>
+                                    <span lang="en">+5.5% from last year</span>
+                                    <span lang="hi">पिछले वर्ष से +5.5%</span>
+                                </small>
+                                <span class="badge"><i class="fas fa-arrow-up me-1"></i>5.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <div class="kpi-card kpi-3">
+                            <div class="icon"><i class="fas fa-book"></i></div>
+                            <div class="h5 fw-bold">
+                                <span lang="en">Total Materials Distributed</span>
+                                <span lang="hi">वितरित सामग्री</span>
+                            </div>
+                            <div class="h2 fw-bold">2000000</div>
+                            <div class="card-footer3">
+                                <small>
+                                    <span lang="en">+1.5% from last year</span>
+                                    <span lang="hi">पिछले वर्ष से -1.5%</span>
+                                </small>
+                                <span class="badge"><i class="fas fa-arrow-down me-1"></i>-1.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-6">
+                        <div class="kpi-card kpi-4">
+                            <div class="icon"><i class="fas fa-school"></i></div>
+                            <div class="h5 fw-bold">
+                                <span lang="en">Total Schools Covered</span>
+                                <span lang="hi">कुल स्कूल कवर</span>
+                            </div>
+                            <div class="h2 fw-bold">10000</div>
+                            <div class="card-footer4">
+                                <small>
+                                    <span lang="en">+19.5% from last year</span>
+                                    <span lang="hi">पिछले वर्ष से +19.5%</span>
+                                </small>
+                                <span class="badge"><i class="fas fa-arrow-up me-1"></i>19.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="kpi-card kpi-5">
+                            <div class="icon"><i class="fa-solid fa-city"></i></div>
+                            <div class="h5 fw-bold">
+                                <span lang="en">District with 100% Coverage</span>
+                                <span lang="hi">100% कवरेज वाला जिले</span>
+                            </div>
+                            <div class="h2 fw-bold">29</div>
+                            <div class="card-footer5">
+                                <small>
+                                    <span lang="en">55 districts covered</span>
+                                    <span lang="hi">55 जिले कवर</span>
+                                </small>
+                                <span class="badge"><i class="fas fa-star me-1"></i>20 Golden</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Map Section with full width background -->
+        <div class="full-width-bg map-bg">
+            <div class="container">
+                <div class="map-container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h2 class="h4 mb-0">
+                                    <i class="fas fa-map-marked-alt text-primary me-2"></i>
+                                    <span lang="en">Scheme Coverage Across Districts</span>
+                                    <span lang="hi">जिलों में योजना कवरेज</span>
+                                </h2>
+                            </div>
+                            <div class="text-left py-4 w-100">
+                                <svg class="svgshadow" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" height="auto"
                             version="1.1"
                             style="shape-rendering: geometricPrecision; width: auto;  text-rendering: geometricPrecision; image-rendering: optimizeQuality; fill-rule: evenodd; clip-rule: evenodd"
                             viewBox="0 0 8565 6134" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -2440,678 +2479,701 @@
                             </g>
                         </svg>
 
-                        <div class="mt-4 text-center">
-                            <span class="badge bg-success me-2"><i class="fas fa-circle"></i>
-                                <span lang="en">On Track (20)</span>
-                                <span lang="hi">ट्रैक पर (20)</span>
-                            </span>
-                            <span class="badge bg-warning text-dark me-2"><i class="fas fa-circle"></i>
-                                <span lang="en">In Progress (17)</span>
-                                <span lang="hi">प्रगति पर (17)</span>
-                            </span>
-                            <span class="badge bg-danger me-2"><i class="fas fa-circle"></i>
-                                <span lang="en">Delayed (18)</span>
-                                <span lang="hi">विलंबित (18)</span>
-                            </span>
+                                <div class="mt-4 text-center">
+                                    <span class="badge bg-success me-2"><i class="fas fa-circle"></i>
+                                        <span lang="en">On Track (20)</span>
+                                        <span lang="hi">ट्रैक पर (20)</span>
+                                    </span>
+                                    <span class="badge bg-warning text-dark me-2"><i class="fas fa-circle"></i>
+                                        <span lang="en">In Progress (17)</span>
+                                        <span lang="hi">प्रगति पर (17)</span>
+                                    </span>
+                                    <span class="badge bg-danger me-2"><i class="fas fa-circle"></i>
+                                        <span lang="en">Delayed (18)</span>
+                                        <span lang="hi">विलंबित (18)</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="container py-5" style="max-width: 600px;">
+                                <div class="mb-4 select-wrapper">
+                                    <select id="district" class="form-select" aria-label="Select District" placeholder=" ">
+                                        <option value="all" selected>All Districts</option>
+                                    </select>
+                                    <label for="district" class="form-label-floating ">District Name</label>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+
+                                <div id="schemes-table-container" class="card-table">
+                                    <div class="card-header">
+                                        <i class="fas fa-project-diagram me-1"></i>
+                                        Schemes Covered
+                                    </div>
+                                    <div class="p-0 shadow rounded">
+                                        <table aria-label="Schemes Covered Table" id="schemes-table" class="mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Schemes</th>
+                                                    <th scope="col" class="text-end">Beneficiaries</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="schemes-body">
+                                                <tr>
+                                                    <td colspan="2" class="no-data">Loading data...</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="container py-5" style="max-width: 600px;">
-                        <div class="mb-4 select-wrapper">
-                            <select id="district" class="form-select" aria-label="Select District" placeholder=" ">
-                                <option value="all" selected>All Districts</option>
-                            </select>
-                            <label for="district" class="form-label-floating ">District Name</label>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+            </div>
+        </div>
 
-                        <div id="schemes-table-container" class="card-table">
-                            <div class="card-header">
-                                <i class="fas fa-project-diagram me-1"></i>
-                                Schemes Covered
+        <!-- Scheme-wise Progress Tabs with full width background -->
+        <div class="full-width-bg tabs-bg">
+            <div class="container">
+                <section class="tab-container" data-aos="fade-up">
+                    <div class="card border-0">
+                        <h2 class="h4 mb-4">
+                            <i class="fas fa-project-diagram text-primary me-2"></i>
+                            <span lang="en">Scheme-wise Progress</span>
+                            <span lang="hi">योजनानुसार प्रगति</span>
+                        </h2>
+                        <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
+                            <ul class="nav nav-tabs card-header-tabs" id="schemeTabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#uniforms">
+                                        <i class="fas fa-tshirt me-2"></i>
+                                        <span lang="en">Free Uniforms</span>
+                                        <span lang="hi">मुफ्त वर्दी</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#textbooks">
+                                        <i class="fas fa-book me-2"></i>
+                                        <span lang="en">Free Textbooks</span>
+                                        <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#middaymeal">
+                                        <i class="fas fa-utensils me-2"></i>
+                                        <span lang="en">Mid-Day Meal</span>
+                                        <span lang="hi">मध्याह्न भोजन</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#bicycles">
+                                        <i class="fas fa-bicycle me-2"></i>
+                                        <span lang="en">Free Bicycles</span>
+                                        <span lang="hi">मुफ्त साइकिल</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="tab-content p-4">
+                                <div class="tab-pane fade show active" id="uniforms">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="mb-4">
+                                                <span lang="en">Free Uniform Distribution</span>
+                                                <span lang="hi">मुफ्त वर्दी वितरण</span>
+                                            </h4>
+                                            <div class="mb-4">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span lang="en">Implementation Progress</span>
+                                                    <span lang="hi">कार्यान्वयन प्रगति</span>
+                                                    <strong>98%</strong>
+                                                </div>
+                                                <div class="progress" style="height: 10px;">
+                                                    <div class="progress-bar bg-success" style="width: 98%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">
+                                                            <span lang="en">Beneficiaries</span>
+                                                            <span lang="hi">लाभार्थी</span>
+                                                        </small>
+                                                        <strong>14.7L / 15L</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">
+                                                            <span lang="en">Budget Utilized</span>
+                                                            <span lang="hi">उपयोग किया गया बजट</span>
+                                                        </small>
+                                                        <strong>₹45 Cr / ₹50 Cr</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">
+                                                            <span lang="en">Districts Covered</span>
+                                                            <span lang="hi">कवर किए गए जिले</span>
+                                                        </small>
+                                                        <strong>48 / 52</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">
+                                                            <span lang="en">Last Updated</span>
+                                                            <span lang="hi">अंतिम अद्यतन</span>
+                                                        </small>
+                                                        <strong>24 June 2025</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <canvas id="uniformChart" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="textbooks">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="mb-4">Free Textbook Distribution</h4>
+                                            <div class="mb-4">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Implementation Progress</span>
+                                                    <strong>95%</strong>
+                                                </div>
+                                                <div class="progress" style="height: 10px;">
+                                                    <div class="progress-bar bg-success" style="width: 95%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">Books Distributed</small>
+                                                        <strong>28.5L / 30L</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">Budget Utilized</small>
+                                                        <strong>₹38 Cr / ₹40 Cr</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">Last Updated</small>
+                                                        <strong>24 June 2025</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <canvas id="textbookChart" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="middaymeal">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="mb-4">Mid-Day Meal Program</h4>
+                                            <div class="mb-4">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Implementation Progress</span>
+                                                    <strong>87%</strong>
+                                                </div>
+                                                <div class="progress" style="height: 10px;">
+                                                    <div class="progress-bar bg-warning" style="width: 87%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">Schools Covered</small>
+                                                        <strong> 65,000 / 75,000</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">Budget Utilized</small>
+                                                        <strong>₹120 Cr / ₹150 Cr</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">Last Updated</small>
+                                                        <strong>20 June 2025</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <canvas id="mealChart" height="200"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="bicycles">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="mb-4">Free Bicycle Scheme</h4>
+                                            <div class="mb-4">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Implementation Progress</span>
+                                                    <strong>65%</strong>
+                                                </div>
+                                                <div class="progress" style="height: 10px;">
+                                                    <div class="progress-bar bg-danger" style="width: 65%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">Bicycles Distributed</small>
+                                                        <strong> 65,000 / 100,000</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">Budget Utilized</small>
+                                                        <strong>₹32.5 Cr / ₹50 Cr</strong>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="p-3 bg-light rounded">
+                                                        <small class="text-muted d-block">Last Updated</small>
+                                                        <strong>18 June 2025</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <canvas id="bicycleChart" height="200"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="p-0 shadow rounded">
-                                <table aria-label="Schemes Covered Table" id="schemes-table" class="mb-0">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- District Performance Table with full width background -->
+        <div class="full-width-bg district-bg">
+            <div class="container">
+                <section class="dis-container mb-4" data-aos="fade-up">
+                    <div class="card border-0">
+                        <h2 class="h4 mb-0">
+                            <i class="fas fa-table text-primary me-2"></i>
+                            <span lang="en">District-wise Performance</span>
+                            <span lang="hi">जिलेवार प्रदर्शन</span>
+                        </h2>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="districtTable">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Schemes</th>
-                                            <th scope="col" class="text-end">Beneficiaries</th>
+                                            <th><span lang="en">District</span><span lang="hi">जिला</span></th>
+                                            <th><span lang="en">Scheme</span><span lang="hi">योजना</span></th>
+                                            <th><span lang="en">Target</span><span lang="hi">लक्ष्य</span></th>
+                                            <th><span lang="en">Achieved</span><span lang="hi">प्राप्त</span></th>
+                                            <th><span lang="en">Coverage %</span><span lang="hi">कवरेज %</span></th>
+                                            <th><span lang="en">Status</span><span lang="hi">स्थिति</span></th>
                                         </tr>
                                     </thead>
-                                    <tbody id="schemes-body">
+                                    <tbody>
                                         <tr>
-                                            <td colspan="2" class="no-data">Loading data...</td>
+                                            <td>Bhopal</td>
+                                            <td><span lang="en">Free Uniforms</span><span lang="hi">मुफ्त वर्दी</span></td>
+                                            <td>120,000</td>
+                                            <td>118,000</td>
+                                            <td>98%</td>
+                                            <td><span class="badge bg-success"><span lang="en">On Track</span><span
+                                                        lang="hi">ट्रैक पर</span></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Indore</td>
+                                            <td><span lang="en">Free Textbooks</span><span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                            </td>
+                                            <td>150,000</td>
+                                            <td>140,000</td>
+                                            <td>93%</td>
+                                            <td><span class="badge bg-success"><span lang="en">On Track</span><span
+                                                        lang="hi">ट्रैक पर</span></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jabalpur</td>
+                                            <td><span lang="en">Mid-Day Meal</span><span lang="hi">मध्याह्न भोजन</span></td>
+                                            <td>80,000</td>
+                                            <td>65,000</td>
+                                            <td>81%</td>
+                                            <td><span class="badge bg-warning"><span lang="en">In Progress</span><span
+                                                        lang="hi">प्रगति पर</span></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gwalior</td>
+                                            <td><span lang="en">Free Bicycles</span><span lang="hi">मुफ्त साइकिलें</span></td>
+                                            <td>50,000</td>
+                                            <td>30,000</td>
+                                            <td>60%</td>
+                                            <td><span class="badge bg-danger"><span lang="en">Delayed</span><span
+                                                        lang="hi">विलंबित</span></span></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-</div>
-        <!-- Scheme-wise Progress Tabs -->
-        <section class="tab-container" data-aos="fade-up">
-            <div class="card border-0">
-                <h2 class="h4 mb-4">
-                    <i class="fas fa-project-diagram text-primary me-2"></i>
-                    <span lang="en">Scheme-wise Progress</span>
-                    <span lang="hi">योजनानुसार प्रगति</span>
-                </h2>
-                <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
-                    <ul class="nav nav-tabs card-header-tabs" id="schemeTabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#uniforms">
-                                <i class="fas fa-tshirt me-2"></i>
-                                <span lang="en">Free Uniforms</span>
-                                <span lang="hi">मुफ्त वर्दी</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#textbooks">
-                                <i class="fas fa-book me-2"></i>
-                                <span lang="en">Free Textbooks</span>
-                                <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#middaymeal">
-                                <i class="fas fa-utensils me-2"></i>
-                                <span lang="en">Mid-Day Meal</span>
-                                <span lang="hi">मध्याह्न भोजन</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#bicycles">
-                                <i class="fas fa-bicycle me-2"></i>
-                                <span lang="en">Free Bicycles</span>
-                                <span lang="hi">मुफ्त साइकिल</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card-body p-0">
-                    <div class="tab-content p-4">
-                        <div class="tab-pane fade show active" id="uniforms">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="mb-4">
-                                        <span lang="en">Free Uniform Distribution</span>
-                                        <span lang="hi">मुफ्त वर्दी वितरण</span>
-                                    </h4>
-                                    <div class="mb-4">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span lang="en">Implementation Progress</span>
-                                            <span lang="hi">कार्यान्वयन प्रगति</span>
-                                            <strong>98%</strong>
-                                        </div>
-                                        <div class="progress" style="height: 10px;">
-                                            <div class="progress-bar bg-success" style="width: 98%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">
-                                                    <span lang="en">Beneficiaries</span>
-                                                    <span lang="hi">लाभार्थी</span>
-                                                </small>
-                                                <strong>14.7L / 15L</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">
-                                                    <span lang="en">Budget Utilized</span>
-                                                    <span lang="hi">उपयोग किया गया बजट</span>
-                                                </small>
-                                                <strong>₹45 Cr / ₹50 Cr</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">
-                                                    <span lang="en">Districts Covered</span>
-                                                    <span lang="hi">कवर किए गए जिले</span>
-                                                </small>
-                                                <strong>48 / 52</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">
-                                                    <span lang="en">Last Updated</span>
-                                                    <span lang="hi">अंतिम अद्यतन</span>
-                                                </small>
-                                                <strong>24 June 2025</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <canvas id="uniformChart" height="300"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="textbooks">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="mb-4">Free Textbook Distribution</h4>
-                                    <div class="mb-4">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span>Implementation Progress</span>
-                                            <strong>95%</strong>
-                                        </div>
-                                        <div class="progress" style="height: 10px;">
-                                            <div class="progress-bar bg-success" style="width: 95%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">Books Distributed</small>
-                                                <strong>28.5L / 30L</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">Budget Utilized</small>
-                                                <strong>₹38 Cr / ₹40 Cr</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">Last Updated</small>
-                                                <strong>24 June 2025</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <canvas id="textbookChart" height="300"></canvas>
-                                </div>
-                            </div>
-                        </div>
+        </div>
 
-                        <div class="tab-pane fade" id="middaymeal">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="mb-4">Mid-Day Meal Program</h4>
-                                    <div class="mb-4">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span>Implementation Progress</span>
-                                            <strong>87%</strong>
-                                        </div>
-                                        <div class="progress" style="height: 10px;">
-                                            <div class="progress-bar bg-warning" style="width: 87%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">Schools Covered</small>
-                                                <strong> 65,000 / 75,000</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">Budget Utilized</small>
-                                                <strong>₹120 Cr / ₹150 Cr</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">Last Updated</small>
-                                                <strong>20 June 2025</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <canvas id="mealChart" height="200"></canvas>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Charts Section with full width background -->
+        <div class="full-width-bg charts-bg">
+            <div class="container">
+                <section class="row g-4 mb-4">
+                    <div class="col-md-4" data-aos="fade-left">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">
+                                    <span lang="en">Scheme progress Comparison</span>
+                                    <span lang="hi">योजना प्रगति तुलना</span>
+                                </h5>
+                                <select class="form-select mb-2" id="schemeSelect">
+                                    <option selected>
+                                        <span lang="en">Select Scheme /</span>
+                                        <span lang="hi">योजना चुनें</span>
+                                    </option>
+                                    <option value="uniforms">
+                                        <span lang="en">Free Uniforms /</span>
+                                        <span lang="hi">मुफ्त वर्दी</span>
+                                    </option>
+                                    <option value="textbooks">
+                                        <span lang="en">Free Textbooks /</span>
+                                        <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                    </option>
+                                    <option value="middaymeal">
+                                        <span lang="en">Mid-Day Meal /</span>
+                                        <span lang="hi">मध्याह्न भोजन</span>
+                                    </option>
+                                    <option value="bicycles">
+                                        <span lang="en">Free Bicycles /</span>
+                                        <span lang="hi">मुफ्त साइकिल</span>
+                                    </option>
+                                </select>
 
-                        <div class="tab-pane fade" id="bicycles">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="mb-4">Free Bicycle Scheme</h4>
-                                    <div class="mb-4">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <span>Implementation Progress</span>
-                                            <strong>65%</strong>
-                                        </div>
-                                        <div class="progress" style="height: 10px;">
-                                            <div class="progress-bar bg-danger" style="width: 65%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">Bicycles Distributed</small>
-                                                <strong> 65,000 / 100,000</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">Budget Utilized</small>
-                                                <strong>₹32.5 Cr / ₹50 Cr</strong>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <div class="p-3 bg-light rounded">
-                                                <small class="text-muted d-block">Last Updated</small>
-                                                <strong>18 June 2025</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <canvas id="bicycleChart" height="200"></canvas>
-                                </div>
+                                <canvas id="barChart" height="300"></canvas>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- District Performance Table -->
-        <section class="dis-container mb-4" data-aos="fade-up">
-            <div class="card border-0">
-                <h2 class="h4 mb-0">
-                    <i class="fas fa-table text-primary me-2"></i>
-                    <span lang="en">District-wise Performance</span>
-                    <span lang="hi">जिलेवार प्रदर्शन</span>
-                </h2>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped" id="districtTable">
-                            <thead>
-                                <tr>
-                                    <th><span lang="en">District</span><span lang="hi">जिला</span></th>
-                                    <th><span lang="en">Scheme</span><span lang="hi">योजना</span></th>
-                                    <th><span lang="en">Target</span><span lang="hi">लक्ष्य</span></th>
-                                    <th><span lang="en">Achieved</span><span lang="hi">प्राप्त</span></th>
-                                    <th><span lang="en">Coverage %</span><span lang="hi">कवरेज %</span></th>
-                                    <th><span lang="en">Status</span><span lang="hi">स्थिति</span></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Bhopal</td>
-                                    <td><span lang="en">Free Uniforms</span><span lang="hi">मुफ्त वर्दी</span></td>
-                                    <td>120,000</td>
-                                    <td>118,000</td>
-                                    <td>98%</td>
-                                    <td><span class="badge bg-success"><span lang="en">On Track</span><span
-                                                lang="hi">ट्रैक पर</span></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Indore</td>
-                                    <td><span lang="en">Free Textbooks</span><span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
-                                    </td>
-                                    <td>150,000</td>
-                                    <td>140,000</td>
-                                    <td>93%</td>
-                                    <td><span class="badge bg-success"><span lang="en">On Track</span><span
-                                                lang="hi">ट्रैक पर</span></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Jabalpur</td>
-                                    <td><span lang="en">Mid-Day Meal</span><span lang="hi">मध्याह्न भोजन</span></td>
-                                    <td>80,000</td>
-                                    <td>65,000</td>
-                                    <td>81%</td>
-                                    <td><span class="badge bg-warning"><span lang="en">In Progress</span><span
-                                                lang="hi">प्रगति पर</span></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Gwalior</td>
-                                    <td><span lang="en">Free Bicycles</span><span lang="hi">मुफ्त साइकिलें</span></td>
-                                    <td>50,000</td>
-                                    <td>30,000</td>
-                                    <td>60%</td>
-                                    <td><span class="badge bg-danger"><span lang="en">Delayed</span><span
-                                                lang="hi">विलंबित</span></span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-md-4" data-aos="fade">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">
+                                    <span lang="en">Year-wise Beneficiaries</span>
+                                    <span lang="hi">वार्षिक लाभार्थी</span>
+                                </h5>
+                                <select class="form-select mb-2" id="schemeSelect">
+                                    <option selected>
+                                        <span lang="en">Select Scheme /</span>
+                                        <span lang="hi">योजना चुनें</span>
+                                    </option>
+                                    <option value="uniforms">
+                                        <span lang="en">Free Uniforms /</span>
+                                        <span lang="hi">मुफ्त वर्दी</span>
+                                    </option>
+                                    <option value="textbooks">
+                                        <span lang="en">Free Textbooks /</span>
+                                        <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                    </option>
+                                    <option value="middaymeal">
+                                        <span lang="en">Mid-Day Meal /</span>
+                                        <span lang="hi">मध्याह्न भोजन</span>
+                                    </option>
+                                    <option value="bicycles">
+                                        <span lang="en">Free Bicycles /</span>
+                                        <span lang="hi">मुफ्त साइकिल</span>
+                                    </option>
+                                </select>
+                                <canvas id="lineChart" height="300"></canvas>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Charts Section -->
-        <section class="row g-4 mb-4">
-            <div class="col-md-4" data-aos="fade-left">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">
-                            <span lang="en">Scheme progress Comparison</span>
-                            <span lang="hi">योजना प्रगति तुलना</span>
-                        </h5>
-                        <select class="form-select mb-2" id="schemeSelect">
-                            <option selected>
-                                <span lang="en">Select Scheme /</span>
-                                <span lang="hi">योजना चुनें</span>
-                            </option>
-                            <option value="uniforms">
-                                <span lang="en">Free Uniforms /</span>
-                                <span lang="hi">मुफ्त वर्दी</span>
-                            </option>
-                            <option value="textbooks">
-                                <span lang="en">Free Textbooks /</span>
-                                <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
-                            </option>
-                            <option value="middaymeal">
-                                <span lang="en">Mid-Day Meal /</span>
-                                <span lang="hi">मध्याह्न भोजन</span>
-                            </option>
-                            <option value="bicycles">
-                                <span lang="en">Free Bicycles /</span>
-                                <span lang="hi">मुफ्त साइकिल</span>
-                            </option>
-                        </select>
-
-                        <canvas id="barChart" height="300"></canvas>
+                    <div class="col-md-4" data-aos="fade-right">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">
+                                    <span lang="en">Category-wise Distribution</span>
+                                    <span lang="hi">श्रेणीवार वितरण</span>
+                                </h5>
+                                <select class="form-select mb-2" id="schemeSelect">
+                                    <option selected>
+                                        <span lang="en">Select Scheme /</span>
+                                        <span lang="hi">योजना चुनें</span>
+                                    </option>
+                                    <option value="uniforms">
+                                        <span lang="en">Free Uniforms /</span>
+                                        <span lang="hi">मुफ्त वर्दी</span>
+                                    </option>
+                                    <option value="textbooks">
+                                        <span lang="en">Free Textbooks /</span>
+                                        <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
+                                    </option>
+                                    <option value="middaymeal">
+                                        <span lang="en">Mid-Day Meal /</span>
+                                        <span lang="hi">मध्याह्न भोजन</span>
+                                    </option>
+                                    <option value="bicycles">
+                                        <span lang="en">Free Bicycles /</span>
+                                        <span lang="hi">मुफ्त साइकिल</span>
+                                    </option>
+                                </select>
+                                <canvas id="pieChart" height="300"></canvas>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
             </div>
-            <div class="col-md-4" data-aos="fade">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">
-                            <span lang="en">Year-wise Beneficiaries</span>
-                            <span lang="hi">वार्षिक लाभार्थी</span>
-                        </h5>
-                        <select class="form-select mb-2" id="schemeSelect">
-                            <option selected>
-                                <span lang="en">Select Scheme /</span>
-                                <span lang="hi">योजना चुनें</span>
-                            </option>
-                            <option value="uniforms">
-                                <span lang="en">Free Uniforms /</span>
-                                <span lang="hi">मुफ्त वर्दी</span>
-                            </option>
-                            <option value="textbooks">
-                                <span lang="en">Free Textbooks /</span>
-                                <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
-                            </option>
-                            <option value="middaymeal">
-                                <span lang="en">Mid-Day Meal /</span>
-                                <span lang="hi">मध्याह्न भोजन</span>
-                            </option>
-                            <option value="bicycles">
-                                <span lang="en">Free Bicycles /</span>
-                                <span lang="hi">मुफ्त साइकिल</span>
-                            </option>
-                        </select>
-                        <canvas id="lineChart" height="300"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4" data-aos="fade-right">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">
-                            <span lang="en">Category-wise Distribution</span>
-                            <span lang="hi">श्रेणीवार वितरण</span>
-                        </h5>
-                        <select class="form-select mb-2" id="schemeSelect">
-                            <option selected>
-                                <span lang="en">Select Scheme /</span>
-                                <span lang="hi">योजना चुनें</span>
-                            </option>
-                            <option value="uniforms">
-                                <span lang="en">Free Uniforms /</span>
-                                <span lang="hi">मुफ्त वर्दी</span>
-                            </option>
-                            <option value="textbooks">
-                                <span lang="en">Free Textbooks /</span>
-                                <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
-                            </option>
-                            <option value="middaymeal">
-                                <span lang="en">Mid-Day Meal /</span>
-                                <span lang="hi">मध्याह्न भोजन</span>
-                            </option>
-                            <option value="bicycles">
-                                <span lang="en">Free Bicycles /</span>
-                                <span lang="hi">मुफ्त साइकिल</span>
-                            </option>
-                        </select>
-                        <canvas id="pieChart" height="300"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
 
-        <!-- Success Stories -->
-        <!-- <section class="success-container card mb-4" data-aos="fade-up">
-            <div class="row">
-                <div class="col-md-8">
+        <!-- Success Stories with full width background -->
+        <div class="full-width-bg success-bg">
+            <div class="container">
+                <!-- <section class="success-container card mb-4" data-aos="fade-up">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card border-0">
+                                <h2 class="h4 mb-0">
+                                    <i class="fa-solid fa-circle-check text-primary me-2"></i>
+                                    <span lang="en">Success Stories & Testimonials</span>
+                                    <span lang="hi">सफलता की कहानियाँ और प्रशंसापत्र</span>
+                                </h2>
+                            </div>
+                            <div class="container">
+                                <div class="card-body">
+                                    <div id="successCarousel" class="carousel slide" data-bs-ride="carousel"
+                                        data-bs-interval="4000" data-bs-pause="hover">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <div class="row g-4 justify-content-center">
+                                                    <div class="col-md-6">
+                                                        <div class="testimonial-card p-4 h-100">
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <img src="assets/S.jpg" class="testimonial-img me-3">
+                                                                <div>
+                                                                    <h6 class="mb-0">
+                                                                        <span lang="en">Priya Sharma</span>
+                                                                        <span lang="hi">प्रिया शर्मा</span>
+                                                                    </h6>
+                                                                    <small class="text-muted">
+                                                                        <span lang="en">Student, Class 8</span>
+                                                                        <span lang="hi">छात्रा, कक्षा 8</span>
+                                                                    </small>
+                                                                </div>
+                                                            </div>
+                                                            <p class="mb-0">
+                                                                <span lang="en">"The free uniforms helped me attend school with
+                                                                    dignity. I no longer feel different from my
+                                                                    classmates."</span>
+                                                                <span lang="hi">"मुफ्त वर्दी ने मुझे गरिमा के साथ स्कूल जाने में
+                                                                    मदद की। मैं अब अपने सहपाठियों से अलग महसूस नहीं
+                                                                    करती।"</span>
+                                                            </p>
+                                                            <div class="mt-3 text-primary">
+                                                                <i class="fas fa-map-marker-alt"></i> Bhopal
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="testimonial-card p-4 h-100">
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <img src="assets/P.jpg" class="testimonial-img me-3">
+                                                                <div>
+                                                                    <h6 class="mb-0">
+                                                                        <span lang="en">Rajesh Verma</span>
+                                                                        <span lang="hi">राजेश वर्मा</span>
+
+                                                                    </h6>
+                                                                    <small class="text-muted">
+                                                                        <span lang="en">School Principle</span>
+                                                                        <span lang="hi">स्कूल प्राचार्य</span>
+                                                                    </small>
+                                                                </div>
+                                                            </div>
+                                                            <p class="mb-0">
+                                                                <span lang="en">"The textbook scheme has significantly improved
+                                                                    our
+                                                                    students' learning outcomes. Attendance has increased by
+                                                                    20%."</span>
+                                                                <span lang="hi">"पाठ्यपुस्तक योजना ने हमारे छात्रों के सीखने के
+                                                                    परिणामों में उल्लेखनीय सुधार किया है। उपस्थिति में 20% की
+                                                                    वृद्धि हुई है।"</span>
+                                                            </p>
+                                                            <div class="mt-3 text-primary">
+                                                                <i class="fas fa-map-marker-alt"></i> Indore
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="carousel-item">
+                                                <div class="row g-4 justify-content-center">
+                                                    <div class="col-md-6">
+                                                        <div class="testimonial-card p-4 h-100">
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <img src="assets/Parent.jpg" class="testimonial-img me-3">
+                                                                <div>
+                                                                    <h6 class="mb-0">
+                                                                        <span lang="en">Sunita Patel</span>
+                                                                        <span lang="hi">सुनीता पटेल</span>
+
+                                                                    </h6>
+                                                                    <small class="text-muted">
+                                                                        <span lang="en">Parent </span>
+                                                                        <span lang="hi">अभिभावक</span>
+                                                                    </small>
+                                                                </div>
+                                                            </div>
+                                                            <p class="mb-0">
+                                                                <span lang="en">"The mid-day meal program ensures my daughter
+                                                                    gets
+                                                                    at least one nutritious meal a day. It's a huge relief for
+                                                                    our
+                                                                    family."</span>
+                                                                <span lang="hi">
+                                                                    "मिड-डे मील कार्यक्रम सुनिश्चित करता है कि मेरी बेटी को दिन
+                                                                    में कम से कम एक बार पौष्टिक भोजन मिले। यह हमारे परिवार के
+                                                                    लिए बहुत बड़ी राहत है।"</span>
+                                                            </p>
+                                                            <div class="mt-3 text-primary">
+                                                                <i class="fas fa-map-marker-alt"></i> Jabalpur
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="testimonial-card p-4 h-100">
+                                                            <div class="d-flex align-items-center mb-3">
+                                                                <img src="assets/T.jpg" class="testimonial-img me-3">
+                                                                <div>
+                                                                    <h6 class="mb-0">
+                                                                        <span lang="en">Anjali Gupta</span>
+                                                                        <span lang="hi">अंजलि गुप्ता</span>
+
+                                                                    </h6>
+                                                                    <small class="text-muted">
+                                                                        <span lang="en">Teacher</span>
+                                                                        <span lang="hi">शिक्षक</span>
+                                                                    </small>
+                                                                </div>
+                                                            </div>
+                                                            <p class="mb-0">
+                                                                <span lang="en">"The new teaching materials have made classroom
+                                                                    instruction more effective and engaging for all
+                                                                    students."</span>
+                                                                <span lang="hi">
+
+                                                                    "नई शिक्षण सामग्री ने कक्षा शिक्षण को सभी छात्रों के लिए
+                                                                    अधिक प्रभावी और आकर्षक बना दिया है।"</span>
+                                                            </p>
+                                                            <div class="mt-3 text-primary">
+                                                                <i class="fas fa-map-marker-alt"></i> Gwalior
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#successCarousel"
+                                            data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#successCarousel"
+                                            data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 py-5 border rounded shadow-sm">
+                            <iframe width="100%" height="250" src="https://www.youtube.com/embed/cCjtb14eVT8"
+                                title="Scooty Distribution Program" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </section> -->
+            </div>
+        </div>
+
+        <!-- Downloadable Reports with full width background -->
+        <div class="full-width-bg download-bg">
+            <div class="container">
+                <section class="download-container card mb-4" data-aos="fade-up">
                     <div class="card border-0">
                         <h2 class="h4 mb-0">
-                            <i class="fa-solid fa-circle-check text-primary me-2"></i>
-                            <span lang="en">Success Stories & Testimonials</span>
-                            <span lang="hi">सफलता की कहानियाँ और प्रशंसापत्र</span>
+                            <i class="fas fa-file-alt text-primary me-2"></i>
+                            <span lang="en">Downloadable Reports</span>
+                            <span lang="hi">डाउनलोड करने योग्य रिपोर्ट</span>
                         </h2>
                     </div>
-                    <div class="container">
-                        <div class="card-body">
-                            <div id="successCarousel" class="carousel slide" data-bs-ride="carousel"
-                                data-bs-interval="4000" data-bs-pause="hover">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <div class="row g-4 justify-content-center">
-                                            <div class="col-md-6">
-                                                <div class="testimonial-card p-4 h-100">
-                                                    <div class="d-flex align-items-center mb-3">
-                                                        <img src="assets/S.jpg" class="testimonial-img me-3">
-                                                        <div>
-                                                            <h6 class="mb-0">
-                                                                <span lang="en">Priya Sharma</span>
-                                                                <span lang="hi">प्रिया शर्मा</span>
-                                                            </h6>
-                                                            <small class="text-muted">
-                                                                <span lang="en">Student, Class 8</span>
-                                                                <span lang="hi">छात्रा, कक्षा 8</span>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                    <p class="mb-0">
-                                                        <span lang="en">"The free uniforms helped me attend school with
-                                                            dignity. I no longer feel different from my
-                                                            classmates."</span>
-                                                        <span lang="hi">"मुफ्त वर्दी ने मुझे गरिमा के साथ स्कूल जाने में
-                                                            मदद की। मैं अब अपने सहपाठियों से अलग महसूस नहीं
-                                                            करती।"</span>
-                                                    </p>
-                                                    <div class="mt-3 text-primary">
-                                                        <i class="fas fa-map-marker-alt"></i> Bhopal
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="testimonial-card p-4 h-100">
-                                                    <div class="d-flex align-items-center mb-3">
-                                                        <img src="assets/P.jpg" class="testimonial-img me-3">
-                                                        <div>
-                                                            <h6 class="mb-0">
-                                                                <span lang="en">Rajesh Verma</span>
-                                                                <span lang="hi">राजेश वर्मा</span>
-
-                                                            </h6>
-                                                            <small class="text-muted">
-                                                                <span lang="en">School Principle</span>
-                                                                <span lang="hi">स्कूल प्राचार्य</span>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                    <p class="mb-0">
-                                                        <span lang="en">"The textbook scheme has significantly improved
-                                                            our
-                                                            students' learning outcomes. Attendance has increased by
-                                                            20%."</span>
-                                                        <span lang="hi">"पाठ्यपुस्तक योजना ने हमारे छात्रों के सीखने के
-                                                            परिणामों में उल्लेखनीय सुधार किया है। उपस्थिति में 20% की
-                                                            वृद्धि हुई है।"</span>
-                                                    </p>
-                                                    <div class="mt-3 text-primary">
-                                                        <i class="fas fa-map-marker-alt"></i> Indore
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="carousel-item">
-                                        <div class="row g-4 justify-content-center">
-                                            <div class="col-md-6">
-                                                <div class="testimonial-card p-4 h-100">
-                                                    <div class="d-flex align-items-center mb-3">
-                                                        <img src="assets/Parent.jpg" class="testimonial-img me-3">
-                                                        <div>
-                                                            <h6 class="mb-0">
-                                                                <span lang="en">Sunita Patel</span>
-                                                                <span lang="hi">सुनीता पटेल</span>
-
-                                                            </h6>
-                                                            <small class="text-muted">
-                                                                <span lang="en">Parent </span>
-                                                                <span lang="hi">अभिभावक</span>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                    <p class="mb-0">
-                                                        <span lang="en">"The mid-day meal program ensures my daughter
-                                                            gets
-                                                            at least one nutritious meal a day. It's a huge relief for
-                                                            our
-                                                            family."</span>
-                                                        <span lang="hi">
-                                                            "मिड-डे मील कार्यक्रम सुनिश्चित करता है कि मेरी बेटी को दिन
-                                                            में कम से कम एक बार पौष्टिक भोजन मिले। यह हमारे परिवार के
-                                                            लिए बहुत बड़ी राहत है।"</span>
-                                                    </p>
-                                                    <div class="mt-3 text-primary">
-                                                        <i class="fas fa-map-marker-alt"></i> Jabalpur
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="testimonial-card p-4 h-100">
-                                                    <div class="d-flex align-items-center mb-3">
-                                                        <img src="assets/T.jpg" class="testimonial-img me-3">
-                                                        <div>
-                                                            <h6 class="mb-0">
-                                                                <span lang="en">Anjali Gupta</span>
-                                                                <span lang="hi">अंजलि गुप्ता</span>
-
-                                                            </h6>
-                                                            <small class="text-muted">
-                                                                <span lang="en">Teacher</span>
-                                                                <span lang="hi">शिक्षक</span>
-                                                            </small>
-                                                        </div>
-                                                    </div>
-                                                    <p class="mb-0">
-                                                        <span lang="en">"The new teaching materials have made classroom
-                                                            instruction more effective and engaging for all
-                                                            students."</span>
-                                                        <span lang="hi">
-
-                                                            "नई शिक्षण सामग्री ने कक्षा शिक्षण को सभी छात्रों के लिए
-                                                            अधिक प्रभावी और आकर्षक बना दिया है।"</span>
-                                                    </p>
-                                                    <div class="mt-3 text-primary">
-                                                        <i class="fas fa-map-marker-alt"></i> Gwalior
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 col-6 mb-3">
+                                <div class="card h-100 card1">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                                        <h6>
+                                            <span lang="en">Annual Scheme Report 2024-25</span>
+                                            <span lang="hi">वार्षिक योजना रिपोर्ट 2024-25</span>
+                                        </h6>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">
+                                            <span lang="en">Download</span>
+                                            <span lang="hi">डाउनलोड</span>
+                                        </a>
                                     </div>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#successCarousel"
-                                    data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#successCarousel"
-                                    data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <div class="card h-100 card2">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-book-reader fa-3x text-success mb-3"></i>
+                                        <h6>Scheme Guidelines</h6>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <div class="card h-100 card3">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-solid fa-award fa-3x text-primary mb-3"></i>
+                                        <h6>Fund Utilization certificate</h6>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-3">
+                                <div class="card h-100 card4">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-book fa-3x text-warning mb-3"></i>
+                                        <h6>RTI-disclosable data</h6>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 py-5 border rounded shadow-sm">
-                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/cCjtb14eVT8"
-                        title="Scooty Distribution Program" frameborder="0" allowfullscreen></iframe>
-                </div>
+                </section>
             </div>
-        </section> -->
-
-        <!-- Downloadable Reports -->
-        <section class="download-container card mb-4" data-aos="fade-up">
-            <div class="card border-0">
-                <h2 class="h4 mb-0">
-                    <i class="fas fa-file-alt text-primary me-2"></i>
-                    <span lang="en">Downloadable Reports</span>
-                    <span lang="hi">डाउनलोड करने योग्य रिपोर्ट</span>
-                </h2>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-3 col-6 mb-3">
-                        <div class="card h-100 card1">
-                            <div class="card-body text-center">
-                                <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
-                                <h6>
-                                    <span lang="en">Annual Scheme Report 2024-25</span>
-                                    <span lang="hi">वार्षिक योजना रिपोर्ट 2024-25</span>
-                                </h6>
-                                <a href="#" class="btn btn-sm btn-outline-primary">
-                                    <span lang="en">Download</span>
-                                    <span lang="hi">डाउनलोड</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6 mb-3">
-                        <div class="card h-100 card2">
-                            <div class="card-body text-center">
-                                <i class="fas fa-book-reader fa-3x text-success mb-3"></i>
-                                <h6>Scheme Guidelines</h6>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6 mb-3">
-                        <div class="card h-100 card3">
-                            <div class="card-body text-center">
-                                <i class="fas fa-solid fa-award fa-3x text-primary mb-3"></i>
-                                <h6>Fund Utilization certificate</h6>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6 mb-3">
-                        <div class="card h-100 card4">
-                            <div class="card-body text-center">
-                                <i class="fas fa-book fa-3x text-warning mb-3"></i>
-                                <h6>RTI-disclosable data</h6>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Download</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
     <div class="p-3 bg-warning"></div>
     <!-- Footer with Feedback -->
@@ -3210,7 +3272,7 @@
                     
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.238591777989!2d77.4394405!3d23.234403300000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4269a54a49a7%3A0xe5d9a2fa0cc65a14!2sDPI%20Office!5e0!3m2!1sen!2sin!4v1751282298602!5m2!1sen!2sin"
-                        width="400" height="220" style="border:0;" allowfullscreen="" loading="lazy"
+                        width="400" height="200" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
