@@ -792,28 +792,96 @@
         .c4 {
             background-color: #faf2d3;
         }
-        .out1{
+
+        .out1 {
             border: 2px solid #dc3545;
             border-radius: 5px;
         }
-        .out2{
+
+        .out2 {
             border: 2px solid #008959;
             border-radius: 5px;
         }
-        .out3{
+
+        .out3 {
             border: 2px solid #4462f5;
             border-radius: 5px;
         }
-        .out4{
+
+        .out4 {
             border: 2px solid #dda31c;
             border-radius: 5px;
         }
+
+        .headerbg {
+            background: linear-gradient(300deg, rgba(255, 152, 25, 1) 0%, rgba(253, 201, 45, 1) 100%);
+        }
+
+         /* Enhanced Throw Effect */
+        .effect-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .effect-particle {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: particle-throw 1.5s forwards;
+            will-change: transform, opacity;
+        }
+        
+        @keyframes particle-throw {
+            0% {
+                transform: translate(-50%, -50%) scale(0.3);
+                opacity: 1;
+                filter: brightness(1.5);
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: 
+                    translate(
+                        calc(-50% + var(--throw-x)), 
+                        calc(-50% + var(--throw-y))
+                    ) 
+                    scale(1.1);
+                opacity: 0;
+                filter: brightness(1);
+            }
+        }
+        
+        /* Click Animation */
+        .tab-click-effect {
+            animation: click-pop 0.8s cubic-bezier(0.5, 1.8, 0.9, 0.8);
+        }
+        
+        @keyframes click-pop {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.8); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
     </style>
 </head>
 
 <body>
     <!-- Header Section -->
-    <header class=" bg-warning text-dark p-1">
+    <header class=" headerbg text-dark p-1">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
@@ -2787,6 +2855,10 @@
             </div>
         </div>
 
+        <!-- Center Throw Effect Container -->
+         <div id="effectContainer" class="effect-container"></div>
+
+
         <!-- Scheme-wise Progress Tabs with full width background -->
         <div class="full-width-bg tabs-bg">
             <div class="container">
@@ -2800,28 +2872,28 @@
                         <div class="card-header bg-white border-0 pt-4 px-4 pb-0">
                             <ul class="nav nav-tabs card-header-tabs" id="schemeTabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#uniforms">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#uniforms" id="uniformTab">
                                         <i class="fas fa-tshirt me-2"></i>
                                         <span lang="en">Free Uniforms</span>
                                         <span lang="hi">मुफ्त वर्दी</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#textbooks">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#textbooks" id="textbookTab">
                                         <i class="fas fa-book me-2"></i>
                                         <span lang="en">Free Textbooks</span>
                                         <span lang="hi">मुफ्त पाठ्यपुस्तकें</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#middaymeal">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#middaymeal" id="mealTab">
                                         <i class="fas fa-utensils me-2"></i>
                                         <span lang="en">Mid-Day Meal</span>
                                         <span lang="hi">मध्याह्न भोजन</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#bicycles">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#bicycles" id="bicycleTab">
                                         <i class="fas fa-bicycle me-2"></i>
                                         <span lang="en">Free Bicycles</span>
                                         <span lang="hi">मुफ्त साइकिल</span>
@@ -3023,12 +3095,12 @@
             <div class="container">
                 <section class="dis-container mb-4" data-aos="fade-up">
                     <div class="card border-0">
-                        <h2 class="h4 mb-0">
+                        <h2 class="h4 mb-4">
                             <i class="fas fa-table text-primary me-2"></i>
                             <span lang="en">District-wise Performance</span>
                             <span lang="hi">जिलेवार प्रदर्शन</span>
                         </h2>
-                        <div class="card-body">
+                        <div class="card-body shadow-sm">
                             <div class="table-responsive">
                                 <table class="table table-striped" id="districtTable">
                                     <thead>
@@ -3099,7 +3171,7 @@
                     <div class="col-md-4" data-aos="fade-left">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title fw-bold">
+                                <h5 class="card-title fw-bold mb-3">
                                     <span lang="en">Scheme progress Comparison</span>
                                     <span lang="hi">योजना प्रगति तुलना</span>
                                 </h5>
@@ -3133,7 +3205,7 @@
                     <div class="col-md-4" data-aos="fade">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title fw-bold">
+                                <h5 class="card-title fw-bold mb-3">
                                     <span lang="en">Year-wise Beneficiaries</span>
                                     <span lang="hi">वार्षिक लाभार्थी</span>
                                 </h5>
@@ -3166,7 +3238,7 @@
                     <div class="col-md-4" data-aos="fade-right">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h5 class="card-title fw-bold">
+                                <h5 class="card-title fw-bold mb-3">
                                     <span lang="en">Category-wise Distribution</span>
                                     <span lang="hi">श्रेणीवार वितरण</span>
                                 </h5>
@@ -3377,7 +3449,7 @@
             <div class="container">
                 <section class="download-container card mb-4" data-aos="fade-up">
                     <div class="card border-0">
-                        <h2 class="h4 mb-0">
+                        <h2 class="h4 mb-4">
                             <i class="fas fa-file-alt text-primary me-2"></i>
                             <span lang="en">Downloadable Reports</span>
                             <span lang="hi">डाउनलोड करने योग्य रिपोर्ट</span>
@@ -4915,6 +4987,171 @@
             }
         });
     </script>
+     <script>
+        // Configuration - Easy to customize
+        const config = {
+            particleCount: 30,          // Number of particles
+            minSize: 40,                // Minimum particle size (px)
+            maxSize: 70,                // Maximum particle size (px)
+            minDistance: 200,           // Minimum throw distance (px)
+            maxDistance: 500,           // Maximum throw distance (px)
+            minDuration: 1.0,           // Minimum animation duration (s)
+            maxDuration: 1.8,           // Maximum animation duration (s)
+            colors: [                   // Particle colors
+                '#2c7be5', '#00d97e', 
+                '#00cfd5', '#dfac2e',
+                '#Bd76ee', '#ff6b6b'
+            ],
+            effects: {
+                uniform: {
+                    emojis: ['👕', '👖', '🎽', '👔', '👗', '🧥', '🩳', '👚', '👘', '🥼', '🧦', '👟'],
+                    iconClass: 'fa-tshirt'
+                },
+                textbook: {
+                    emojis: ['📚', '📖', '📕', '📗', '📘', '📙', '📓', '📔', '📒', '📝', '✏️', '📏'],
+                    iconClass: 'fa-book'
+                },
+                meal: {
+                    emojis: ['🍎', '🍌', '🍗', '🍲', '🥗', '🍛', '🥘', '🍚', '🍞', '🥛', '🥣', '🍽️'],
+                    iconClass: 'fa-utensils'
+                },
+                bicycle: {
+                    emojis: ['🚲', '🚴', '🚴‍♀️', '🚴‍♂️', '🛴', '🚵', '🚵‍♀️', '🚵‍♂️', '🔧', '🔩', '⛑️', '🛠️'],
+                    iconClass: 'fa-bicycle'
+                },
+                laptop: {
+                    emojis: ['💻', '🖥️', '⌨️', '🖱️', '📱', '🔌', '🔋', '📀', '💾', '💿', '📊', '📈'],
+                    iconClass: 'fa-laptop'
+                }
+            }
+        };
+
+        // Initialize effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const effectContainer = document.getElementById('effectContainer');
+            const triggerButtons = document.querySelectorAll('.effect-trigger');
+            
+            // Set up event listeners for all tabs
+            document.getElementById('uniformTab').addEventListener('click', () => triggerEffect('uniform'));
+            document.getElementById('textbookTab').addEventListener('click', () => triggerEffect('textbook'));
+            document.getElementById('mealTab').addEventListener('click', () => triggerEffect('meal'));
+            document.getElementById('bicycleTab').addEventListener('click', () => triggerEffect('bicycle'));
+            document.getElementById('laptopTab').addEventListener('click', () => triggerEffect('laptop'));
+            
+            // Set up event listeners for all buttons
+            triggerButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const effectType = this.getAttribute('data-effect');
+                    triggerEffect(effectType);
+                });
+            });
+            
+            // Tab switching logic
+            setupTabSwitching();
+            
+            function triggerEffect(effectType) {
+                // Visual feedback on tab
+                const tab = document.getElementById(`${effectType}Tab`);
+                const icon = tab.querySelector('i');
+                icon.classList.add('tab-click-effect');
+                setTimeout(() => {
+                    icon.classList.remove('tab-click-effect');
+                }, 800);
+                
+                // Create the particle effect
+                createWideAreaEffect(effectType);
+            }
+            
+            function createWideAreaEffect(effectType) {
+                effectContainer.innerHTML = '';
+                
+                // Create multiple particles with staggered timing
+                for (let i = 0; i < config.particleCount; i++) {
+                    setTimeout(() => {
+                        createParticle(effectType);
+                    }, i * 40); // Stagger creation
+                }
+                
+                // Clean up after all animations complete
+                setTimeout(() => {
+                    effectContainer.innerHTML = '';
+                }, (config.maxDuration * 1000) + 500);
+            }
+            
+            function createParticle(effectType) {
+                const particle = document.createElement('div');
+                particle.className = 'effect-particle';
+                
+                // Get effect-specific configuration
+                const effectConfig = config.effects[effectType];
+                
+                // Random properties
+                const size = randomBetween(config.minSize, config.maxSize);
+                const angle = Math.random() * Math.PI * 2;
+                const distance = randomBetween(config.minDistance, config.maxDistance);
+                const duration = randomBetween(config.minDuration, config.maxDuration);
+                const emoji = effectConfig.emojis[Math.floor(Math.random() * effectConfig.emojis.length)];
+                const color = config.colors[Math.floor(Math.random() * config.colors.length)];
+                
+                // Calculate trajectory with some variation
+                const throwX = Math.cos(angle) * distance * trajectoryVariation();
+                const throwY = Math.sin(angle) * distance * trajectoryVariation();
+                
+                // Apply styles
+                particle.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    --throw-x: ${throwX}px;
+                    --throw-y: ${throwY}px;
+                    animation-duration: ${duration}s;
+                    font-size: ${size * 0.7}px;
+                    text-align: center;
+                    line-height: ${size}px;
+                    color: ${color};
+                    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                `;
+                
+                // Use emoji as content
+                particle.textContent = emoji;
+                
+                // Random rotation
+                particle.style.transform += ` rotate(${Math.random() * 360}deg)`;
+                
+                effectContainer.appendChild(particle);
+            }
+            
+            function setupTabSwitching() {
+                const tabs = document.querySelectorAll('.tab');
+                const contents = document.querySelectorAll('.tab-content > div');
+                
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        // Set active tab
+                        tabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Show corresponding content
+                        const targetId = this.id.replace('Tab', 'Content');
+                        contents.forEach(c => c.style.display = 'none');
+                        document.getElementById(targetId).style.display = 'block';
+                    });
+                });
+            }
+            
+            // Helper functions
+            function randomBetween(min, max) {
+                return min + Math.random() * (max - min);
+            }
+            
+            function trajectoryVariation() {
+                return 0.8 + Math.random() * 0.4; // Returns between 0.8 and 1.2
+            }
+        });
+    </script>
+    
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </body>
 
 </html>
