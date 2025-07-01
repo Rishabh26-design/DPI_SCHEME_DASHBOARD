@@ -58,6 +58,10 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            overflow-x: hidden;
+            /* Blocks horizontal scroll */
+            overflow-y: auto;
+            /* Allows vertical scroll (default behavior) */
         }
 
         /* Full width background containers */
@@ -82,14 +86,14 @@
         .kpi-bg::before {
             background-color: #ffffff;
             background-image: url(assets/download.jpg);
-           
+
         }
 
         .map-bg::before {
             background-color: #e9f5ff;
-             background-image:url(assets/BG10.jpg) ;
-             background-size: cover;
-             
+            background-image: url(assets/BG10.jpg);
+            background-size: cover;
+
         }
 
         .tabs-bg::before {
@@ -102,7 +106,7 @@
             background-color: #f7f8bc;
             background-image: url(assets/BG11.jpg);
             background-size: cover;
-              /* opacity: 70%; */
+            /* opacity: 70%; */
         }
 
         .charts-bg::before {
