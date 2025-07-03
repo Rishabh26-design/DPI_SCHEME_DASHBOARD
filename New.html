@@ -282,35 +282,35 @@
         .kpi-1 {
             --accent-color: var(--primary-blue);
             /* --card-bg: var(--card-bg-1); */
-            background: linear-gradient(144deg,rgba(240, 247, 255, 1) 0%, rgba(168, 219, 255, 1) 100%);
+            background: linear-gradient(144deg, rgba(240, 247, 255, 1) 0%, rgba(168, 219, 255, 1) 100%);
             outline: 2px solid var(--primary-blue);
         }
 
         .kpi-2 {
             --accent-color: var(--primary-green);
             /* --card-bg: var(--card-bg-2); */
-            background: linear-gradient(144deg,rgba(240, 255, 244, 1) 0%, rgba(196, 255, 219, 1) 100%);
+            background: linear-gradient(144deg, rgba(240, 255, 244, 1) 0%, rgba(196, 255, 219, 1) 100%);
             outline: 2px solid var(--primary-green);
         }
 
         .kpi-3 {
             --accent-color: var(--primary-teal);
             /* --card-bg: var(--card-bg-3); */
-            background: linear-gradient(144deg,rgba(240, 253, 250, 1) 1%, rgba(205, 250, 235, 1) 100%);
+            background: linear-gradient(144deg, rgba(240, 253, 250, 1) 1%, rgba(205, 250, 235, 1) 100%);
             outline: 2px solid var(--primary-teal);
         }
 
         .kpi-4 {
             --accent-color: var(--primary-yellow);
             /* --card-bg: var(--card-bg-4); */
-            background: linear-gradient(144deg,rgba(254, 246, 230, 1) 1%, rgba(255, 237, 199, 1) 100%);
+            background: linear-gradient(144deg, rgba(254, 246, 230, 1) 1%, rgba(255, 237, 199, 1) 100%);
             outline: 2px solid var(--primary-yellow);
         }
 
         .kpi-5 {
             --accent-color: var(--primary-purple);
             /* --card-bg: var(--card-bg-5); */
-            background: linear-gradient(144deg,rgba(245, 240, 255, 1) 1%, rgba(226, 214, 255, 1) 100%);
+            background: linear-gradient(144deg, rgba(245, 240, 255, 1) 1%, rgba(226, 214, 255, 1) 100%);
             outline: 2px solid var(--primary-purple);
         }
 
@@ -931,135 +931,137 @@
             </div>
         </div>
     </header>
-    <header class="bg text-dark py-3">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <img src="assets/MpLOgo.png" height="70" alt="MP Govt Logo" class="me-3">
+
+    <div class="sticky-top">
+        <header class="bg text-dark py-2">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <img src="assets/MpLOgo.png" height="70" alt="MP Govt Logo" class="me-3">
+                        <div>
+                            <h1 class="h4 mb-0 fw-bold">
+                                <span lang="en">MP School Education Schemes</span>
+                                <span lang="hi">एमपी स्कूल शिक्षा योजनाएं</span>
+                            </h1>
+                            <small class="text-dark">
+                                <span lang="en">Public Dashboard</span>
+                                <span lang="hi">सार्वजनिक डैशबोर्ड</span>
+                            </small>
+                        </div>
+                    </div>
                     <div>
-                        <h1 class="h4 mb-0 fw-bold">
-                            <span lang="en">MP School Education Schemes</span>
-                            <span lang="hi">एमपी स्कूल शिक्षा योजनाएं</span>
-                        </h1>
-                        <small class="text-dark">
-                            <span lang="en">Public Dashboard</span>
-                            <span lang="hi">सार्वजनिक डैशबोर्ड</span>
-                        </small>
+                        <button id="langToggle" class="btn btn-outline-primary">हिंदी</button>
                     </div>
                 </div>
-                <div>
-                    <button id="langToggle" class="btn btn-outline-primary">हिंदी</button>
+            </div>
+        </header>
+
+        <!-- Navigation Menu -->
+        <nav class=" navbar-expand-lg navbar-dark p-1" style="background-image: url(assets/headerbg.jpg);">
+            <div class="container ">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNav">
+                    <ul class="navbar-nav fw-semibold spa gap-5">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home">
+                                <i class="fas fa-home me-1"></i>
+                                <span lang="en">Home</span>
+                                <span lang="hi">होम</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="schemesDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-project-diagram me-1"></i>
+                                <span lang="en">Schemes</span>
+                                <span lang="hi">योजनाएं</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="schemesDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="#uniforms">
+                                        <span lang="en">Free Uniform Distribution</span>
+                                        <span lang="hi">मुफ्त वर्दी योजना</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#textbooks">
+                                        <span lang="en">Free Textbook Scheme</span>
+                                        <span lang="hi">मुफ्त पाठ्यपुस्तकें योजना</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#middaymeal">
+                                        <span lang="en">Mid-Day Meal Program</span>
+                                        <span lang="hi">मध्याह्न भोजन आयोजन</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#bicycles">
+                                        <span lang="en">Free Bicycle Scheme</span>
+                                        <span lang="hi">मुफ्त साइकिल योजना</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#bicycles">
+                                        <span lang="en">Scholarship & Incentive Schemes</span>
+                                        <span lang="hi">छात्रवृत्ति एवं प्रोत्साहन योजनाएं</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#bicycles">
+                                        <span lang="en">Girls Education Schemes</span>
+                                        <span lang="hi">बालिका शिक्षा योजनाएँ</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#bicycles">
+                                        <span lang="en">Digital Device Distribution</span>
+                                        <span lang="hi">डिजिटल डिवाइस वितरण</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#bicycles">
+                                        <span lang="en">RTE (Right to Education) Admissions & Reimbursements</span>
+                                        <span lang="hi">आरटीई (शिक्षा का अधिकार) प्रवेश और प्रतिपूर्ति</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#bicycles">
+                                        <span lang="en">CWSN Special Assistance</span>
+                                        <span lang="hi">सीडब्ल्यूएसएन विशेष सहायता</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#districts">
+                                <i class="fas fa-map-marked-alt me-1"></i>
+                                <span lang="en">District-wise Data</span>
+                                <span lang="hi">जिलेवार डेटा</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#reports">
+                                <i class="fas fa-file-alt me-1"></i>
+                                <span lang="en">Reports</span>
+                                <span lang="hi">रिपोर्ट्स</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faqs">
+                                <i class="fas fa-question-circle me-1"></i>
+                                <span lang="en">FAQs</span>
+                                <span lang="hi">सामान्य प्रश्न</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </header>
-
-    <!-- Navigation Menu -->
-    <nav class="sticky-top navbar-expand-lg navbar-dark p-2" style="background-image: url(assets/headerbg.jpg);">
-        <div class="container ">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarNav">
-                <ul class="navbar-nav fw-semibold spa gap-5">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#home">
-                            <i class="fas fa-home me-1"></i>
-                            <span lang="en">Home</span>
-                            <span lang="hi">होम</span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="schemesDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-project-diagram me-1"></i>
-                            <span lang="en">Schemes</span>
-                            <span lang="hi">योजनाएं</span>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="schemesDropdown">
-                            <li>
-                                <a class="dropdown-item" href="#uniforms">
-                                    <span lang="en">Free Uniform Distribution</span>
-                                    <span lang="hi">मुफ्त वर्दी योजना</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#textbooks">
-                                    <span lang="en">Free Textbook Scheme</span>
-                                    <span lang="hi">मुफ्त पाठ्यपुस्तकें योजना</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#middaymeal">
-                                    <span lang="en">Mid-Day Meal Program</span>
-                                    <span lang="hi">मध्याह्न भोजन आयोजन</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#bicycles">
-                                    <span lang="en">Free Bicycle Scheme</span>
-                                    <span lang="hi">मुफ्त साइकिल योजना</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#bicycles">
-                                    <span lang="en">Scholarship & Incentive Schemes</span>
-                                    <span lang="hi">छात्रवृत्ति एवं प्रोत्साहन योजनाएं</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#bicycles">
-                                    <span lang="en">Girls Education Schemes</span>
-                                    <span lang="hi">बालिका शिक्षा योजनाएँ</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#bicycles">
-                                    <span lang="en">Digital Device Distribution</span>
-                                    <span lang="hi">डिजिटल डिवाइस वितरण</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#bicycles">
-                                    <span lang="en">RTE (Right to Education) Admissions & Reimbursements</span>
-                                    <span lang="hi">आरटीई (शिक्षा का अधिकार) प्रवेश और प्रतिपूर्ति</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#bicycles">
-                                    <span lang="en">CWSN Special Assistance</span>
-                                    <span lang="hi">सीडब्ल्यूएसएन विशेष सहायता</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#districts">
-                            <i class="fas fa-map-marked-alt me-1"></i>
-                            <span lang="en">District-wise Data</span>
-                            <span lang="hi">जिलेवार डेटा</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#reports">
-                            <i class="fas fa-file-alt me-1"></i>
-                            <span lang="en">Reports</span>
-                            <span lang="hi">रिपोर्ट्स</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#faqs">
-                            <i class="fas fa-question-circle me-1"></i>
-                            <span lang="en">FAQs</span>
-                            <span lang="hi">सामान्य प्रश्न</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+        </nav>
+    </div>
     <main class="container py-0">
         <!-- KPI Cards Section with full width background -->
         <div class="full-width-bg kpi-bg">
@@ -1084,7 +1086,7 @@
                 <!-- Highlight KPIs -->
                 <div class="row g-4 mb-4">
                     <div class="col-md-3 col-6">
-                        <div class="kpi-card kpi-1">
+                        <div class="kpi-card kpi-1 shadow-sm">
                             <div class="icon"><i class="fas fa-users"></i></div>
                             <div class="h5 fw-bold">
                                 <span lang="en">Total Students Benefitted</span>
@@ -1101,14 +1103,14 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-6">
-                        <div class="kpi-card kpi-2">
+                        <div class="kpi-card kpi-2 shadow-sm">
                             <div class="icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
                             <div class="h5 fw-bold">
                                 <span lang="en">Total Budget Allocated</span>
                                 <span lang="hi">कुल बजट आवंटित</span>
                             </div>
                             <div class="h2 fw-bold">₹500 Cr</div>
-                            <div class="card-footer2">
+                            <div class="card-footer2 shadow-sm">
                                 <small>
                                     <span lang="en">+5.5% from last year</span>
                                     <span lang="hi">पिछले वर्ष से +5.5%</span>
@@ -1118,7 +1120,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-6">
-                        <div class="kpi-card kpi-3">
+                        <div class="kpi-card kpi-3 shadow-sm">
                             <div class="icon"><i class="fas fa-book"></i></div>
                             <div class="h5 fw-bold">
                                 <span lang="en">Total Materials Distributed</span>
@@ -1135,7 +1137,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-6">
-                        <div class="kpi-card kpi-4">
+                        <div class="kpi-card kpi-4 shadow-sm">
                             <div class="icon"><i class="fas fa-school"></i></div>
                             <div class="h5 fw-bold">
                                 <span lang="en">Total Schools Covered</span>
@@ -1152,7 +1154,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 ">
-                        <div class="kpi-card kpi-5">
+                        <div class="kpi-card kpi-5 shadow-sm">
                             <div class="icon"><i class="fa-solid fa-city"></i></div>
                             <div class="h5 fw-bold">
                                 <span lang="en">District with 100% Coverage</span>
@@ -3665,6 +3667,9 @@
                         <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
                     </div>
+                    <div id="visitor-counter">
+                        Visitors Count: <span id="count">0</span>
+                    </div>
                 </div>
                 <div class="col-md-4 col-6">
                     <h5 class="pb-3 fw-bold text-warning">
@@ -3698,7 +3703,9 @@
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.238591777989!2d77.4394405!3d23.234403300000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4269a54a49a7%3A0xe5d9a2fa0cc65a14!2sDPI%20Office!5e0!3m2!1sen!2sin!4v1751282298602!5m2!1sen!2sin"
                         width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
+
                 </div>
+
             </div>
             <div class="text-center mt-3 pt-3 border-top">
                 <p class="mb-0">© 2025
@@ -3708,6 +3715,21 @@
             </div>
         </div>
     </footer>
+
+
+    <script>
+        // Check if localStorage has a count value
+        if (localStorage.getItem('count')) {
+            // If yes, increment it
+            let count = parseInt(localStorage.getItem('count')) + 1;
+            localStorage.setItem('count', count);
+            document.getElementById('count').textContent = count;
+        } else {
+            // If no, initialize with 1
+            localStorage.setItem('count', 1);
+            document.getElementById('count').textContent = 1;
+        }
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -4611,6 +4633,8 @@
                         const barColor = chart.data.datasets[0].backgroundColor[index];
                         const rgbColor = barColor.replace('0.7)', '1)').replace('rgba(', 'rgb(');
                         img.style.filter = `drop-shadow(0 0 1px ${rgbColor})`;
+
+
 
                         icon.appendChild(img);
                         container.appendChild(icon);
